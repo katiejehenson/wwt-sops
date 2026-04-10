@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weindling World Travel — Operations Hub</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+  :root {
+    --navy:  #1a2744;
+    --gold:  #b8964e;
+    --cream: #fdfaf5;
+    --sand:  #f0ebe0;
+    --text:  #2c2c2c;
+    --muted: #7a7e85;
+    --border:#ddd6cc;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { height: 100%; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HEADER ─────────────────────────────────── */
+  header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 60px 40px 52px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg, transparent, transparent 50px,
+      rgba(255,255,255,.02) 50px, rgba(255,255,255,.02) 100px
+    );
+  }
+  .header-inner { position: relative; }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .logo-symbol {
+    width: 48px; height: 48px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: -1px;
+  }
+  .logo-text {
+    text-align: left;
+  }
+  .logo-text .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: .5px;
+  }
+  .logo-text .sub {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    letter-spacing: -.3px;
+  }
+  header h1 em { color: var(--gold); font-style: italic; }
+  header p {
+    color: rgba(255,255,255,.6);
+    font-size: 14.5px;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── MAIN ───────────────────────────────────── */
+  main {
+    flex: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 32px 80px;
+    width: 100%;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  /* ── DOC CARDS ──────────────────────────────── */
+  .doc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 600px) { .doc-grid { grid-template-columns: 1fr; } }
+
+  .doc-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .doc-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,.1);
+    transform: translateY(-2px);
+  }
+  .doc-card-top {
+    background: var(--navy);
+    padding: 28px 24px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-card-top::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(184,150,78,.15);
+  }
+  .doc-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+    position: relative;
+  }
+  .doc-card-top h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.25;
+    position: relative;
+  }
+  .doc-card-top .doc-type {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: relative;
+  }
+
+  .doc-card-body {
+    padding: 20px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .doc-card-body p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .doc-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .doc-tab-pill {
+    background: var(--sand);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+  .doc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Jost', sans-serif;
+    text-decoration: none;
+    transition: background .2s;
+  }
+  .doc-btn:hover { background: #253660; }
+  .doc-btn .arrow { font-size: 16px; }
+
+  /* ── RULES STRIP ────────────────────────────── */
+  .rules {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+  .rules h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rules ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+  @media (max-width: 540px) { .rules ul { grid-template-columns: 1fr; } }
+  .rules li {
+    font-size: 13px;
+    color: #4a4a52;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .rules li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+
+  /* ── LINKS STRIP ────────────────────────────── */
+  .links-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .link-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--navy);
+    text-decoration: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .link-chip:hover {
+    border-color: var(--gold);
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .link-chip .chip-icon { font-size: 14px; }
+
+  /* ── FOOTER ─────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-symbol">W</div>
+      <div class="logo-text">
+        <div class="brand">Weindling World Travel</div>
+        <div class="sub">Operations Hub</div>
+      </div>
+    </div>
+    <h1>Internal <em>Reference</em> Library</h1>
+    <p>Standard operating procedures and workflow guides for the virtual admin team.</p>
+  </div>
+</header>
+
+<main>
+
+  <span class="section-label">Documents</span>
+
+  <div class="doc-grid">
+
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <span class="doc-icon">⚙️</span>
+        <h2>Tern Workflow &amp; Template Guide</h2>
+        <div class="doc-type">CRM Reference</div>
+      </div>
+      <div class="doc-card-body">
+        <p>The master reference for the Tern CRM — workflows, email templates, forms, task lists, vendor commissions, and training videos.</p>
+        <div class="doc-tabs">
+          <span class="doc-tab-pill">Summary</span>
+          <span class="doc-tab-pill">SOP</span>
+          <span class="doc-tab-pill">TJ Templates</span>
+          <span class="doc-tab-pill">Tern Workflows</span>
+          <span class="doc-tab-pill">Forms</span>
+          <span class="doc-tab-pill">Task Lists</span>
+          <span class="doc-tab-pill">Payments</span>
+          <span class="doc-tab-pill">Vendors</span>
+          <span class="doc-tab-pill">Training</span>
+        </div>
+        <a class="doc-btn" href="weindling-tern-guide.html">Open Guide <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <span class="doc-icon">✈️</span>
+        <h2>Axus Itinerary Build &amp; Review SOP</h2>
+        <div class="doc-type">VA Procedure</div>
+      </div>
+      <div class="doc-card-body">
+        <p>How to build final client itineraries in Axus, source and upload images to Barbara's standards, and conduct a thorough QA review before sending to Barbara.</p>
+        <div class="doc-tabs">
+          <span class="doc-tab-pill">Overview</span>
+          <span class="doc-tab-pill">Building</span>
+          <span class="doc-tab-pill">Images</span>
+          <span class="doc-tab-pill">QA Review</span>
+          <span class="doc-tab-pill">Element Standards</span>
+          <span class="doc-tab-pill">Final vs Proposal</span>
+          <span class="doc-tab-pill">Common Errors</span>
+        </div>
+        <a class="doc-btn" href="WWT_Itinerary_SOP.html">Open SOP <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KEY RULES -->
+  <div class="rules">
+    <h3>Key Rules for the VA</h3>
+    <ul>
+      <li>Never send an itinerary directly to a client — always route to Barbara</li>
+      <li>Never activate inactive automations in Tern without Barbara's direction</li>
+      <li>Never copy Travel Biz Boss cruise templates into the library</li>
+      <li>Never change trip statuses without Barbara's approval</li>
+      <li>Never edit master workflows in Tern</li>
+      <li>Always flag QA issues — never fix content unilaterally</li>
+    </ul>
+  </div>
+
+  <!-- QUICK LINKS -->
+  <span class="section-label">Quick Links</span>
+  <div class="links-strip">
+    <a class="link-chip" href="https://calendly.com/baweindling/30-minute-meeting" target="_blank">
+      <span class="chip-icon">📅</span> Calendly
+    </a>
+    <a class="link-chip" href="https://travelpro365.com/consumer/WeindlingWorldTravel" target="_blank">
+      <span class="chip-icon">🏨</span> Hotel Portal
+    </a>
+    <a class="link-chip" href="https://loom.com/share/a880d3aa632940e5b2e315b941853f72" target="_blank">
+      <span class="chip-icon">🎬</span> Loom SOP
+    </a>
+    <a class="link-chip" href="https://axustravelapp.com" target="_blank">
+      <span class="chip-icon">🗺️</span> Axus
+    </a>
+    <a class="link-chip" href="https://instagram.com/BarbaraWeindlingTravels" target="_blank">
+      <span class="chip-icon">📸</span> @BarbaraWeindlingTravels
+    </a>
+  </div>
+
+</main>
+
+<footer>
+  Weindling World Travel · <a href="mailto:barbara@weindlingworldtravel.com">barbara@weindlingworldtravel.com</a> · 917-992-4215
+</footer>
+
+</body>
+</html>

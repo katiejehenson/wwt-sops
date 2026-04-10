@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weindling World Travel — Tern Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --navy: #1a2744;
+    --sky: #4a8fbd;
+    --gold: #c9a84c;
+    --cream: #faf7f2;
+    --sand: #ede8df;
+    --text: #2c2c2c;
+    --muted: #6b7280;
+    --white: #ffffff;
+    --green: #2e7d5a;
+    --red: #c0392b;
+    --amber: #d97706;
+    --border: #ddd6cc;
+    --active-bg: #e8f5ee;
+    --inactive-bg: #fef3cd;
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 40px 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(201,168,76,.12);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 200px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(74,143,189,.1);
+  }
+  .header-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  header p {
+    font-size: 15px;
+    color: rgba(255,255,255,.65);
+    max-width: 560px;
+  }
+
+  /* ── NAV TABS ────────────────────────────────────── */
+  .tab-bar {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .tab-bar a {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 16px 20px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color .2s, border-color .2s;
+  }
+  .tab-bar a:hover { color: var(--navy); }
+  .tab-bar a.active { color: var(--navy); border-bottom-color: var(--gold); font-weight: 600; }
+  .tab-bar a .tab-icon { font-size: 15px; }
+
+  /* ── LAYOUT ──────────────────────────────────────── */
+  main { max-width: 1200px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  section { display: none; }
+  section.active { display: block; }
+
+  /* ── SECTION HEADERS ─────────────────────────────── */
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: var(--navy);
+  }
+  .section-header .badge {
+    background: var(--sand);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 4px;
+  }
+
+  /* ── CARDS ───────────────────────────────────────── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-title span.icon { font-size: 18px; }
+
+  /* ── TABLES ──────────────────────────────────────── */
+  .table-wrap { overflow-x: auto; margin-top: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead th {
+    background: var(--navy);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+  }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--cream); }
+  tbody td { padding: 10px 14px; vertical-align: top; }
+  tbody tr:hover { background: #f0ecf5; }
+
+  /* ── STATUS PILLS ────────────────────────────────── */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pill-active   { background: var(--active-bg);   color: var(--green); }
+  .pill-inactive { background: var(--inactive-bg); color: var(--amber); }
+  .pill-manual   { background: #e8edf8; color: #3b5999; }
+  .pill-yes      { background: var(--active-bg);   color: var(--green); }
+
+  .pill-active::before   { content: '●'; font-size: 8px; }
+  .pill-inactive::before { content: '○'; font-size: 8px; }
+  .pill-yes::before      { content: '✓'; font-size: 9px; }
+
+  /* ── TYPE BADGES ─────────────────────────────────── */
+  .type-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .type-default   { background: #e8edf8; color: #3b5999; }
+  .type-custom    { background: #fce8d4; color: #a05020; }
+  .type-automated { background: #e4f0e8; color: #256b3a; }
+
+  /* ── CATEGORY PILLS ──────────────────────────────── */
+  .cat {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--sand);
+    color: var(--navy);
+  }
+
+  /* ── SUMMARY GRID ────────────────────────────────── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .stat-tile {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .stat-tile .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-tile .label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .stat-tile.highlight { background: var(--navy); border-color: var(--navy); }
+  .stat-tile.highlight .num { color: var(--gold); }
+  .stat-tile.highlight .label { color: rgba(255,255,255,.7); }
+
+  /* ── TWO-COL LAYOUT ──────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ── WORKFLOW STEPS ──────────────────────────────── */
+  .steps { list-style: none; counter-reset: steps; }
+  .steps li {
+    counter-increment: steps;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .steps li::before {
+    content: counter(steps);
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .steps li p { font-size: 14px; line-height: 1.55; }
+  .steps li strong { color: var(--navy); }
+
+  /* ── CALLOUT BOX ─────────────────────────────────── */
+  .callout {
+    border-left: 4px solid var(--gold);
+    background: #fffcf3;
+    padding: 14px 18px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+  }
+  .callout strong { color: var(--navy); }
+  .callout.warning { border-color: var(--red); background: #fff5f5; }
+  .callout.info    { border-color: var(--sky); background: #f0f7fc; }
+
+  /* ── SOP SECTIONS ────────────────────────────────── */
+  .sop-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .sop-block-header {
+    background: var(--sand);
+    padding: 14px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sop-block-body { padding: 18px 20px; font-size: 14px; }
+  .sop-block-body p { margin-bottom: 8px; }
+  .sop-block-body ul { padding-left: 20px; }
+  .sop-block-body li { margin-bottom: 5px; }
+
+  /* ── VENDOR TABLE ────────────────────────────────── */
+  .vendor-note { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── LINKS ───────────────────────────────────────── */
+  a.ext { color: var(--sky); text-decoration: none; }
+  a.ext:hover { text-decoration: underline; }
+
+  /* ── OFFSET INDICATOR ────────────────────────────── */
+  .offset-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .offset-chip .dir-before { color: #c0392b; }
+  .offset-chip .dir-after  { color: #2e7d5a; }
+  .offset-chip .dir-same   { color: #3b5999; }
+
+  /* ── SCROLL TO TOP ───────────────────────────────── */
+  #back-top {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: var(--navy);
+    color: var(--white);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.2);
+    opacity: 0;
+    transition: opacity .3s;
+    text-decoration: none;
+    z-index: 200;
+  }
+  #back-top.visible { opacity: 1; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-eyebrow">Weindling World Travel</div>
+  <h1>Tern Workflow Guide</h1>
+  <p>Complete SOP reference — workflows, email templates, forms, task lists, vendor commissions, and training resources.</p>
+</header>
+
+<nav class="tab-bar" id="tabBar">
+  <a href="#" class="tab-link active" data-target="summary"><span class="tab-icon">📊</span> Summary</a>
+  <a href="#" class="tab-link" data-target="sop"><span class="tab-icon">📋</span> SOP &amp; Workflows</a>
+  <a href="#" class="tab-link" data-target="tj-templates"><span class="tab-icon">✉️</span> Travel Joy Templates</a>
+  <a href="#" class="tab-link" data-target="tern-workflows"><span class="tab-icon">⚙️</span> Tern Workflows</a>
+  <a href="#" class="tab-link" data-target="forms"><span class="tab-icon">📝</span> Forms</a>
+  <a href="#" class="tab-link" data-target="tasklists"><span class="tab-icon">✅</span> Task Lists</a>
+  <a href="#" class="tab-link" data-target="payment"><span class="tab-icon">💳</span> Payment Reminders</a>
+  <a href="#" class="tab-link" data-target="vendors"><span class="tab-icon">🤝</span> Vendor Commissions</a>
+  <a href="#" class="tab-link" data-target="training"><span class="tab-icon">🎬</span> Training</a>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════════ SUMMARY -->
+<section id="summary" class="active">
+  <div class="section-header">
+    <h2>Library Summary</h2>
+    <span class="badge">Overview</span>
+  </div>
+
+  <div class="summary-grid">
+    <div class="stat-tile highlight">
+      <div class="num">55</div>
+      <div class="label">Travel Joy Templates</div>
+    </div>
+    <div class="stat-tile">
+      <div class="num">14</div>
+      <div class="label">Forms</div>
+    </div>
+    <div class="stat-tile">
+      <div class="num">19</div>
+      <div class="label">Full Trip Tasks</div>
+    </div>
+    <div class="stat-tile">
+      <div class="num">6</div>
+      <div class="label">Hotel Only Tasks</div>
+    </div>
+    <div class="stat-tile">
+      <div class="num">18</div>
+      <div class="label">Pre/Post Automations</div>
+    </div>
+    <div class="stat-tile">
+      <div class="num">17</div>
+      <div class="label">Pre/Post Tasks</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><span class="icon">✈️</span> Templates by Category</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Category</th><th>Count</th></tr></thead>
+          <tbody>
+            <tr><td>Admin</td><td>6</td></tr>
+            <tr><td>Booking</td><td>3</td></tr>
+            <tr><td>Client Relations</td><td>2</td></tr>
+            <tr><td>Cruise</td><td>6</td></tr>
+            <tr><td>Destination-Specific</td><td>5</td></tr>
+            <tr><td>Documentation</td><td>5</td></tr>
+            <tr><td>Insurance</td><td>2</td></tr>
+            <tr><td>Misc</td><td>1</td></tr>
+            <tr><td>Payments</td><td>7</td></tr>
+            <tr><td>Post-booking</td><td>2</td></tr>
+            <tr><td>Post-trip</td><td>1</td></tr>
+            <tr><td>Pre-trip</td><td>7</td></tr>
+            <tr><td>Sales</td><td>6</td></tr>
+            <tr><td>Trip Details</td><td>2</td></tr>
+            <tr><td><strong>TOTAL</strong></td><td><strong>55</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">⚙️</span> Workflow Summary</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Workflow</th><th>Items</th></tr></thead>
+          <tbody>
+            <tr><td>TJ Pre/Post Workflow — Tasks</td><td>17</td></tr>
+            <tr><td>TJ Pre/Post Workflow — Automations</td><td>18</td></tr>
+            <tr><td>Tern Hotel Only — Tasks</td><td>2</td></tr>
+            <tr><td>Tern Hotel Only — Automations</td><td>5</td></tr>
+            <tr><td>Tern Lead Workflow — Tasks</td><td>7</td></tr>
+            <tr><td>Tern Lead Workflow — Automations</td><td>5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top:16px; margin-bottom:0;">
+        <strong>Color coding in spreadsheet:</strong> Red = inactive by intention. Yellow = manually added / review required.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔗</span> Quick Links</div>
+    <div style="display:flex; flex-wrap:wrap; gap:12px; font-size:14px;">
+      <a class="ext" href="https://calendly.com/baweindling/30-minute-meeting?month=2026-01" target="_blank">📅 Calendly (Barbara)</a>
+      <a class="ext" href="https://travelpro365.com/consumer/WeindlingWorldTravel" target="_blank">🏨 Hotel Portal (TravelPro365)</a>
+      <a class="ext" href="https://loom.com/share/a880d3aa632940e5b2e315b941853f72" target="_blank">🎬 Loom SOP Overview</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ SOP -->
+<section id="sop">
+  <div class="section-header">
+    <h2>SOP &amp; Workflows</h2>
+    <span class="badge">Step-by-Step</span>
+  </div>
+
+  <div class="callout info">
+    <strong>Purpose:</strong> This SOP outlines workflows and processes for managing travel arrangements using the Tern system, tailored for Barbara's agency (Weindling World Travel).
+  </div>
+
+  <!-- Agency Owner -->
+  <div class="card">
+    <div class="card-title"><span class="icon">👤</span> A. Agency Owner (Barbara)</div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">1. Understand the structure (one-time orientation)</div>
+      <div class="sop-block-body">
+        <p>Use the spreadsheet as the master map of everything in Tern:</p>
+        <ul>
+          <li><strong>Workflow library</strong> — what applies when (Red = inactive by intention; Yellow = manually added/review required)</li>
+          <li><strong>Email templates</strong> — what gets sent</li>
+          <li><strong>Forms</strong> — what data is collected</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">2. Decide how to handle leads (Contact vs Trip)</div>
+      <div class="sop-block-body">
+        <ul>
+          <li><strong>Contact-basis Lead Tasks</strong> — Use when someone emails/calls but you haven't spoken to them yet. Purpose: capture lead, reply, decide if it becomes a trip.</li>
+          <li><strong>Trip-basis Lead Tasks</strong> — Use when you've spoken to someone or are confident it will close. Includes recap email, agreement, and moving to Planning once fee is paid.</li>
+          <li>Either path is acceptable; choose based on confidence level.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">3. Planning phase (core daily workflow)</div>
+      <div class="sop-block-body">
+        <p>When ready to actively work on a trip:</p>
+        <ol style="padding-left:20px; margin-bottom:10px;">
+          <li>Change Trip Status → <strong>Planning</strong> → Add Trips | Planning Workflow</li>
+        </ol>
+        <p>This workflow automatically:</p>
+        <ul>
+          <li>Sends <em>Planning Fee Received</em> email (automated)</li>
+          <li>Sends a travel insurance interest reminder (automated)</li>
+        </ul>
+        <p style="margin-top:8px;">⚠️ "Tern Access" email remains <strong>inactive</strong> until you actually send itineraries through Tern.</p>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">4. Hotel-Only &amp; Concierge logic</div>
+      <div class="sop-block-body">
+        <p><strong>Hotel-Only Trips:</strong> Change status → Hotel Only → Add Hotel Only workflow.</p>
+        <p style="margin-top:8px;"><strong>Concierge Services</strong> (only apply if charging a concierge fee):</p>
+        <ul>
+          <li>Add Trip Tag: <code>Concierge</code></li>
+          <li>In the future this can be auto-applied based on Trip Tag.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">5. Trips: Booked Pre/Post Travel</div>
+      <div class="sop-block-body">
+        <p>Client approves trip and deposits are paid:</p>
+        <ol style="padding-left:20px; margin-bottom:10px;">
+          <li>Change Trip Status → <strong>Booked</strong> → Add Trips | Booked Pre/Post Travel workflow</li>
+        </ol>
+        <p>This applies the Pre/Post Travel workflow, including:</p>
+        <ul>
+          <li>Date-based tasks tied to trip start/end</li>
+          <li>A required early task to: add trip-specific tasks, personalize emails, activate selected automations</li>
+          <li>You can still add one-off tasks (e.g., museum tickets not released yet)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">6. Automations: what stays active vs inactive</div>
+      <div class="sop-block-body">
+        <p><strong>Active:</strong> 45-day check-in (includes emergency contact + passport info form)</p>
+        <p style="margin-top:8px;"><strong>Inactive by design</strong> (must be personalized before activating):</p>
+        <ul>
+          <li>Bon Voyage</li>
+          <li>Welcome Home</li>
+          <li>Passport Control / Global Entry (only if applicable to client)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">7. Cruise workflows (Travel Biz Boss)</div>
+      <div class="sop-block-body">
+        <p>Two cruise workflows in the library:</p>
+        <ul>
+          <li><strong>Mass Market Cruise</strong> — Set to Auto-apply with Trip Tag <code>Prem/Lux river</code></li>
+          <li><strong>Premium / Luxury Cruise</strong></li>
+        </ul>
+        <p style="margin-top:8px;"><strong>Best practice:</strong> Turn off email notifications to yourself (too noisy). Automations are cruise-line agnostic, triggered by Trip Start Date.</p>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">8. Cruise email templates (important rule)</div>
+      <div class="sop-block-body">
+        <div class="callout warning" style="margin-bottom:10px;">
+          <strong>Do not copy cruise templates into your library</strong> unless you plan to edit them — if you copy them, you'll miss future updates from Travel Biz Boss.
+        </div>
+        <p>Templates include: deposit &amp; final payment emails per cruise line, links to apps/FAQs/packages/T&amp;Cs, packing lists and destination guidance.</p>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">9. Email template housekeeping</div>
+      <div class="sop-block-body">
+        <ul>
+          <li>Review folders: General client emails &amp; Hotel supplier communications</li>
+          <li>These live in Tern so a VA can access them — no shared drives or Outlook folders needed</li>
+          <li>One highlighted template needs a decision: review revised copy and decide whether to update</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">10. Forms</div>
+      <div class="sop-block-body">
+        <p>Forms are already organized in the library. Folder location indicates usage. No action required unless you want to rename or consolidate.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VA Section -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🧑‍💼</span> B. Admin / Virtual Assistant (VA)</div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">1. Where the VA works</div>
+      <div class="sop-block-body">
+        <p>VA operates inside <strong>Tern</strong>, not email inboxes. Uses task lists applied to trips and shared email templates (cruise templates are shared, not copied).</p>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">2. Sending cruise emails</div>
+      <div class="sop-block-body">
+        <ol style="padding-left:20px;">
+          <li>Barbara confirms payment action is needed</li>
+          <li>VA sends appropriate template via Tern</li>
+          <li>No editing required unless instructed</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">3. Supplier communications</div>
+      <div class="sop-block-body">
+        <p>VA can send supplier emails using Tern templates. Emails can be <strong>scheduled</strong> and associated with the correct trip. This keeps a clean record in the Trip &gt; Emails section.</p>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">4. Task management</div>
+      <div class="sop-block-body">
+        <p>VA completes tasks assigned via workflows: supplier follow-ups, document checks, post-trip follow-up tasks. Does not activate automations unless instructed.</p>
+      </div>
+    </div>
+
+    <div class="sop-block">
+      <div class="sop-block-header">5. What the VA should NOT do</div>
+      <div class="sop-block-body">
+        <div class="callout warning" style="margin-bottom:0;">
+          <ul style="list-style:disc; padding-left:18px;">
+            <li>Activate inactive automations (until Barbara indicates otherwise)</li>
+            <li>Edit master workflows</li>
+            <li>Copy Travel Biz Boss templates into the library</li>
+            <li>Change trip statuses without approval</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workflow Trigger Map -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🗺️</span> Workflow → Trigger → What Happens</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Workflow</th>
+            <th>Trigger</th>
+            <th>Automations</th>
+            <th>Tasks</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lead Contact</strong></td>
+            <td>Manual</td>
+            <td>Optional (keep minimal)</td>
+            <td>Yes (manual dates)</td>
+            <td>Use for early leads; set follow-up dates based on urgency</td>
+          </tr>
+          <tr>
+            <td><strong>Lead Trip</strong></td>
+            <td>Manual when "trip shell" exists</td>
+            <td>Planning Fee Received (keep), Tern Access (Inactive)</td>
+            <td>Yes</td>
+            <td>Delete unneeded items per trip (3-dot menu)</td>
+          </tr>
+          <tr>
+            <td><strong>Trips | Planning</strong></td>
+            <td>Trip Status → Planning</td>
+            <td>Planning Fee Received (+1 day)</td>
+            <td>Yes</td>
+            <td>Central place for proposal + supplier actions</td>
+          </tr>
+          <tr>
+            <td><strong>Hotel-Only</strong></td>
+            <td>Trip Status → Hotel Only</td>
+            <td>Optional</td>
+            <td>Yes</td>
+            <td>Automates hotel-only flow</td>
+          </tr>
+          <tr>
+            <td><strong>Concierge (add-on)</strong></td>
+            <td>Trip Add tag: Concierge</td>
+            <td>Optional</td>
+            <td>Yes</td>
+            <td>Apply only when managing concierge items</td>
+          </tr>
+          <tr>
+            <td><strong>Trips | Booked Pre/Post</strong></td>
+            <td>Trip Status → Booked</td>
+            <td>Bon Voyage / Welcome Home (keep Inactive until personalized)</td>
+            <td>Yes (incl. +4 day task)</td>
+            <td>Tied to trip dates for timed touches</td>
+          </tr>
+          <tr>
+            <td><strong>Mass Market Cruise</strong></td>
+            <td>Trip Add tag: Prem/Lux river</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Auto-applied on tag</td>
+          </tr>
+          <tr>
+            <td><strong>Premium/Lux Cruise</strong></td>
+            <td>Manual</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Timed Emails -->
+  <div class="card">
+    <div class="card-title"><span class="icon">⏰</span> Timed Emails — Keep Inactive Until Personalized</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Email</th><th>Timing</th><th>Activation Rule</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Planning Fee Received</strong></td>
+            <td>+1 day after status → Planning</td>
+            <td><span class="pill pill-active">Active now</span> (template ready)</td>
+          </tr>
+          <tr>
+            <td><strong>Bon Voyage</strong></td>
+            <td>1 day before Trip Start</td>
+            <td><span class="pill pill-inactive">Inactive</span> — personalize by destination before activating</td>
+          </tr>
+          <tr>
+            <td><strong>Welcome Home</strong></td>
+            <td>4 days after Trip End</td>
+            <td><span class="pill pill-inactive">Inactive</span> — personalize before activating per trip</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ TJ TEMPLATES -->
+<section id="tj-templates">
+  <div class="section-header">
+    <h2>Travel Joy Email Templates</h2>
+    <span class="badge">55 Templates</span>
+  </div>
+
+  <div class="callout">
+    <strong>Note:</strong> All templates are currently active. Cruise templates from Travel Biz Boss should be accessed from the shared folder — do not copy to your own library unless you intend to edit them.
+  </div>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Template Name</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Supplier / Destination</th>
+            <th>Active?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>5 days out email</td><td><span class="cat">Pre-trip</span></td><td><span class="type-badge type-automated">Automated</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>2</td><td>Agreement Email (default)</td><td><span class="cat">Booking</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>3</td><td>Anniversary Email (default)</td><td><span class="cat">Client Relations</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>4</td><td>Antigua Entry</td><td><span class="cat">Destination-Specific</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Antigua</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>5</td><td>Arrival Date</td><td><span class="cat">Pre-trip</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>6</td><td>Birthday Email (default)</td><td><span class="cat">Client Relations</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>7</td><td>Bon Voyage Email (default)</td><td><span class="cat">Pre-trip</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>8</td><td>Booking Confirmation</td><td><span class="cat">Booking</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>9</td><td>Cancellation</td><td><span class="cat">Admin</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>10</td><td>Client Outreach Email</td><td><span class="cat">Sales</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>11</td><td>Client Proposal Ready</td><td><span class="cat">Sales</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>12</td><td>Copy of Bon Voyage Email (default) (2)</td><td><span class="cat">Pre-trip</span></td><td><span class="type-badge type-default">Default Copy</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>13</td><td>Copy of Itinerary Email (default)</td><td><span class="cat">Documentation</span></td><td><span class="type-badge type-default">Default Copy</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>14</td><td>Credit Card Authorization Email (default)</td><td><span class="cat">Payments</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>15</td><td>CRUISE — Norwegian Booking Confirmation</td><td><span class="cat">Cruise</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Norwegian</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>16</td><td>CRUISE — Norwegian 90-Day Touchpoint</td><td><span class="cat">Cruise</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Norwegian</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>17</td><td>CRUISE — Norwegian Documents And Wrap-Up</td><td><span class="cat">Cruise</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Norwegian</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>18</td><td>Cruise Silversea 90 days out</td><td><span class="cat">Cruise</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Silversea</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>19</td><td>Cuba Reminder</td><td><span class="cat">Destination-Specific</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Cuba</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>20</td><td>Dining</td><td><span class="cat">Trip Details</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>21</td><td>Direct Invoice</td><td><span class="cat">Payments</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>22</td><td>Ecuador</td><td><span class="cat">Destination-Specific</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Ecuador</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>23</td><td>Flight Checkin</td><td><span class="cat">Pre-trip</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>24</td><td>Form Email (default)</td><td><span class="cat">Admin</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>25</td><td>Form Follow-up (default)</td><td><span class="cat">Admin</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>26</td><td>Friendly Reminder (default)</td><td><span class="cat">Admin</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>27</td><td>HOTEL ONLY Travel Insurance Email (default)</td><td><span class="cat">Insurance</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>28</td><td>Inquiry Received + Schedule Intake Call</td><td><span class="cat">Sales</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>29</td><td>Invoice Authorize Payment Email (default)</td><td><span class="cat">Payments</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>30</td><td>Invoice Email (default)</td><td><span class="cat">Payments</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>31</td><td>Invoice Payment Due Soon Email (default)</td><td><span class="cat">Payments</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>32</td><td>Itinerary Email (default)</td><td><span class="cat">Documentation</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>33</td><td>Japan</td><td><span class="cat">Destination-Specific</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Japan</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>34</td><td>New Inquiry Response</td><td><span class="cat">Sales</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>35</td><td>New Template</td><td><span class="cat">Misc</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>36</td><td>OOO</td><td><span class="cat">Admin</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>37</td><td>Packing List</td><td><span class="cat">Pre-trip</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>38</td><td>Passport</td><td><span class="cat">Documentation</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>39</td><td>Passport Expiration Email (default)</td><td><span class="cat">Documentation</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>40</td><td>Passport Info &amp; Pre-departure Email (default)</td><td><span class="cat">Documentation</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>41</td><td>Payment Reminder</td><td><span class="cat">Payments</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>42</td><td>Photo Shoot Info</td><td><span class="cat">Trip Details</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>43</td><td>Planning Fee Invoice</td><td><span class="cat">Payments</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>44</td><td>Pre-Departure and Wrap Up</td><td><span class="cat">Pre-trip</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>45</td><td>Profile Update Email (default)</td><td><span class="cat">Admin</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>46</td><td>Proposal Email (default)</td><td><span class="cat">Sales</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>47</td><td>Proposal Follow-up (default)</td><td><span class="cat">Sales</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>48</td><td>Silversea Cruise Confirmation</td><td><span class="cat">Cruise</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Silversea</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>49</td><td>Silversea Documents And Wrap-Up</td><td><span class="cat">Cruise</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Silversea</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>50</td><td>Thailand</td><td><span class="cat">Destination-Specific</span></td><td><span class="type-badge type-custom">Custom</span></td><td>Thailand</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>51</td><td>Travel Insurance Email (default)</td><td><span class="cat">Insurance</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>52</td><td>Trip Check-in - NEW</td><td><span class="cat">Post-booking</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>53</td><td>Trip Check-in Email (default)</td><td><span class="cat">Post-booking</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>54</td><td>Trip Confirmation</td><td><span class="cat">Booking</span></td><td><span class="type-badge type-custom">Custom</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>55</td><td>Welcome Home Email (default)</td><td><span class="cat">Post-trip</span></td><td><span class="type-badge type-default">Default</span></td><td>—</td><td><span class="pill pill-yes">Yes</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ TERN WORKFLOWS -->
+<section id="tern-workflows">
+  <div class="section-header">
+    <h2>Tern Workflows</h2>
+    <span class="badge">Hotel Only + Lead + Pre/Post</span>
+  </div>
+
+  <!-- TJ Pre/Post Tasks -->
+  <div class="card">
+    <div class="card-title"><span class="icon">⚙️</span> TJ — Pre/Post Travel Workflow: Tasks</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Task Name</th><th>Trigger Type</th><th>Offset (days)</th><th>Direction</th><th>Email Notif.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>*SEND Insurance Quote</td><td>Task Creation</td><td>0</td><td>After</td><td>On</td></tr>
+          <tr><td>2</td><td>Add Trip Specific Tasks as Needed</td><td>Task Creation</td><td>7</td><td>After</td><td>On</td></tr>
+          <tr><td>3</td><td>*SEAT SELECTION, SkyMiles, Pre-Check, etc.</td><td>Task Creation</td><td>7</td><td>After</td><td>On</td></tr>
+          <tr><td>4</td><td>*Dining Reservations</td><td>Trip Start Date</td><td>60</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>5</td><td>*Dietary Restrictions</td><td>Trip Start Date</td><td>60</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>6</td><td>*Vaccinations &amp; Visas (travel doctor)</td><td>Trip Start Date</td><td>55</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>7</td><td>00. Pre/Post | Request Final Paperwork from Suppliers</td><td>Trip Start Date</td><td>35</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>8</td><td>*Currency &amp; Pre-Departure Info</td><td>Trip Start Date</td><td>30</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>9</td><td>01. Pre/Post | 15-Day Pre-Travel Docs &amp; Wrap-Up, Send Form</td><td>Trip Start Date</td><td>22</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>10</td><td>*Final Documents Sent</td><td>Trip Start Date</td><td>14</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>11</td><td>*ETA and ETIAS</td><td>Trip Start Date</td><td>10</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>12</td><td>*Trip App</td><td>Trip Start Date</td><td>10</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>13</td><td>02. Pre/Post | Send Hotel Booking Confirmations to Property</td><td>Trip Start Date</td><td>7</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>14</td><td>*Reach Out to Every Hotel</td><td>Trip Start Date</td><td>7</td><td><span style="color:var(--red);">Before</span></td><td>On</td></tr>
+          <tr><td>15</td><td>03. Pre/Post | Submit Additional Commission Notes or Amounts</td><td>Trip Start Date</td><td>5</td><td><span style="color:var(--red);">Before</span></td><td>Off</td></tr>
+          <tr><td>16</td><td>04. Pre/Post | Review Trip Feedback</td><td>Trip End Date</td><td>10</td><td><span style="color:var(--green);">After</span></td><td>On</td></tr>
+          <tr><td>17</td><td>05. Pre/Post | Archive Trip</td><td>Trip End Date</td><td>181</td><td><span style="color:var(--green);">After</span></td><td>On</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TJ Pre/Post Automations -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🤖</span> TJ — Pre/Post Travel Workflow: Automations</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Automation Name</th><th>Trigger</th><th>Offset</th><th>Direction</th><th>Emails</th><th>Tasks</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>7 Day Payment Reminder</td><td>Payment Due</td><td>7</td><td>Before</td><td>1</td><td>1</td><td><span class="pill pill-active">Active</span></td></tr>
+          <tr><td>2</td><td>90-Day Check-in</td><td>Trip Start</td><td>90</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+          <tr><td>3</td><td>*Dining</td><td>Trip Start</td><td>57</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-active">Active</span></td></tr>
+          <tr><td>4</td><td>45-Day Check-In &amp; Profile Refresh</td><td>Trip Start</td><td>45</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+          <tr><td>5</td><td>*Photo Shoot Email</td><td>Trip Start</td><td>40</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+          <tr><td>6</td><td>*Pre Departure</td><td>Trip Start</td><td>14</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+          <tr><td>7</td><td>*Packing</td><td>Trip Start</td><td>7</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+          <tr><td>8</td><td>Packing List</td><td>Trip Start</td><td>7</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-active">Active</span></td></tr>
+          <tr><td>9</td><td>24-Hours Flight Check-In Reminder</td><td>Trip Start</td><td>2</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+          <tr><td>10</td><td>Bon Voyage Email</td><td>Trip Start</td><td>2</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-active">Active</span></td></tr>
+          <tr><td>11</td><td>*Flight Check-In</td><td>Trip Start</td><td>1</td><td>Before</td><td>1</td><td>0</td><td><span class="pill pill-active">Active</span></td></tr>
+          <tr><td>12</td><td>*Check-In Email</td><td>Trip Start</td><td>1</td><td>After</td><td>1</td><td>0</td><td><span class="pill pill-active">Active</span></td></tr>
+          <tr><td>13</td><td>New Automation Template</td><td>Trip Start</td><td>1</td><td>After</td><td>0</td><td>2</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+          <tr><td>14</td><td>Arrival Day Check-In</td><td>Trip Start</td><td>2</td><td>After</td><td>1</td><td>0</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+          <tr><td>15</td><td>Welcome Home Survey</td><td>Trip End</td><td>2</td><td>After</td><td>1</td><td>0</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+          <tr><td>16</td><td>*Welcome Home Email</td><td>Trip End</td><td>2</td><td>After</td><td>1</td><td>0</td><td><span class="pill pill-active">Active</span></td></tr>
+          <tr><td>17</td><td>6-Month Post Travel Check-in</td><td>Trip End</td><td>180</td><td>After</td><td>1</td><td>0</td><td><span class="pill pill-active">Active</span></td></tr>
+          <tr><td>18</td><td>*Insurance</td><td>Trip Status Change</td><td>1</td><td>After</td><td>1</td><td>1</td><td><span class="pill pill-active">Active</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Hotel Only -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><span class="icon">🏨</span> Tern — Hotel Only: Tasks</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Task Name</th><th>Trigger</th><th>Days</th><th>Dir.</th><th>Email</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>*ETA and ETIAS Requirement</td><td>Trip Start Date</td><td>8</td><td>Before</td><td>On</td></tr>
+            <tr><td>2</td><td>*VIP Client</td><td>Trip Start Date</td><td>7</td><td>Before</td><td>On</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">⚡</span> Tern — Hotel Only: Automations</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Automation</th><th>Trigger</th><th>Days</th><th>Dir.</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>*Insurance</td><td>Trip Created</td><td>1</td><td>After</td><td><span class="pill pill-active">Active</span></td></tr>
+            <tr><td>2</td><td>7 Day Payment Reminder</td><td>Payment Due</td><td>7</td><td>Before</td><td><span class="pill pill-active">Active</span></td></tr>
+            <tr><td>3</td><td>*Bon Voyage Email</td><td>Trip Start</td><td>2</td><td>Before</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+            <tr><td>4</td><td>*Check-In with Client Day 1</td><td>Trip Start</td><td>1</td><td>After</td><td><span class="pill pill-active">Active</span></td></tr>
+            <tr><td>5</td><td>*Welcome Home Email</td><td>Trip End</td><td>2</td><td>After</td><td><span class="pill pill-active">Active</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lead Workflow -->
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><span class="icon">🎯</span> Tern — Lead Workflow: Tasks</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Task Name</th><th>Email</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>00. Lead | Initial Contact Email, Send Client Inquiry Form</td><td>Off</td></tr>
+            <tr><td>2</td><td>01. Lead | Initial Contact Follow-Up, Send Inquiry Follow-Up Form</td><td>Off</td></tr>
+            <tr><td>3</td><td>02. Lead | Inquiry Received, Schedule Intake Call</td><td>On</td></tr>
+            <tr><td>4</td><td>03. Lead | Schedule Intake Call Follow-Up</td><td>Off</td></tr>
+            <tr><td>5</td><td>04. Lead | Call Recap, Send Planning Invoice</td><td>On</td></tr>
+            <tr><td>6</td><td>05. Lead | Upon Payment of Fee, Update Status to Planning</td><td>On</td></tr>
+            <tr><td>7</td><td>Lead — Activate Confirmation Automations</td><td>On</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon">⚡</span> Tern — Lead Workflow: Automations</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Automation</th><th>Trigger</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Look Forward to Connecting Kickoff Email</td><td>Trip Created (0 days)</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+            <tr><td>2</td><td>Signed Agreement / No Planning Fee</td><td>Trip Status Change (+1 day)</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+            <tr><td>3</td><td>Tern Access</td><td>Trip Status Change (+2 days)</td><td><span class="pill pill-active">Active</span></td></tr>
+            <tr><td>4</td><td>Planning Fee Payment Confirmation</td><td>Trip Status Change (0 days)</td><td><span class="pill pill-inactive">Inactive</span></td></tr>
+            <tr><td>5</td><td>Client Agreement</td><td>Trip Status Change (0 days)</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ FORMS -->
+<section id="forms">
+  <div class="section-header">
+    <h2>Travel Joy Forms</h2>
+    <span class="badge">14 Forms</span>
+  </div>
+
+  <div class="callout info">Forms are already organized in the library. Folder location indicates usage. No action required unless you want to rename or consolidate.</div>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Form Name</th><th>Category</th><th>Type</th><th>Active?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Client Agreement - Trips by Nic</td><td><span class="cat">Agreement</span></td><td><span class="type-badge type-custom">Custom</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>2</td><td>Client Inquiry (default)</td><td><span class="cat">Inquiry</span></td><td><span class="type-badge type-default">Default</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>3</td><td>Client Profile Update (default)</td><td><span class="cat">Profile</span></td><td><span class="type-badge type-default">Default</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>4</td><td>Credit Card Authorization (default)</td><td><span class="cat">Payments</span></td><td><span class="type-badge type-default">Default</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>5</td><td>Embedded Client Inquiry (default)</td><td><span class="cat">Inquiry</span></td><td><span class="type-badge type-default">Default</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>6</td><td>Embedded Simple Message (default)</td><td><span class="cat">Messaging</span></td><td><span class="type-badge type-default">Default</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>7</td><td>Frequent Flyer Information</td><td><span class="cat">Profile</span></td><td><span class="type-badge type-custom">Custom</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>8</td><td>Group Booking Registration (default)</td><td><span class="cat">Booking</span></td><td><span class="type-badge type-default">Default</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>9</td><td>New Client Profile</td><td><span class="cat">Profile</span></td><td><span class="type-badge type-custom">Custom</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>10</td><td>Passport Info &amp; Pre-departure (default)</td><td><span class="cat">Documentation</span></td><td><span class="type-badge type-default">Default</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>11</td><td>Passport Upload</td><td><span class="cat">Documentation</span></td><td><span class="type-badge type-custom">Custom</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>12</td><td>Terms &amp; Conditions</td><td><span class="cat">Agreement</span></td><td><span class="type-badge type-custom">Custom</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>13</td><td>Travel Insurance (default)</td><td><span class="cat">Insurance</span></td><td><span class="type-badge type-default">Default</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+          <tr><td>14</td><td>Travel Services Agreement (default)</td><td><span class="cat">Agreement</span></td><td><span class="type-badge type-default">Default</span></td><td><span class="pill pill-yes">Yes</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ TASK LISTS -->
+<section id="tasklists">
+  <div class="section-header">
+    <h2>Travel Joy Task Lists</h2>
+    <span class="badge">Full Trip + Hotel Only</span>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title"><span class="icon">🗺️</span> Full New Trip with Confirmed Dates</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Task Name</th><th>Trigger</th><th>Days</th><th>Dir.</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Bon Voyage Email</td><td>Trip Start Date</td><td>2</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>2</td><td>Check In Email</td><td>Trip Start Date</td><td>1</td><td><span style="color:var(--green);">After</span></td></tr>
+            <tr><td>3</td><td>Welcome Home Email</td><td>Trip End Date</td><td>2</td><td><span style="color:var(--green);">After</span></td></tr>
+            <tr><td>4</td><td>Dining Reservations</td><td>Trip Start Date</td><td>60</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>5</td><td>Reach Out to Every Hotel</td><td>Trip Start Date</td><td>7</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>6</td><td>Dietary Restrictions</td><td>Trip Start Date</td><td>60</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>7</td><td>Currency and Pre-Departure Info</td><td>Trip Start Date</td><td>30</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>8</td><td>Final Documents Sent</td><td>Trip Start Date</td><td>14</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>9</td><td>Flight Check-In</td><td>Trip Start Date</td><td>1</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>10</td><td>Insurance</td><td>Task Import Date</td><td>1</td><td><span style="color:var(--green);">After</span></td></tr>
+            <tr><td>11</td><td>Packing List</td><td>Trip Start Date</td><td>7</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>12</td><td>Pre-Departure</td><td>Trip Start Date</td><td>14</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>13</td><td>Dining</td><td>Trip Start Date</td><td>57</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>14</td><td>Trip App</td><td>Trip Start Date</td><td>10</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>15</td><td>Vaccinations &amp; Visas (Travel Doctor)</td><td>Trip Start Date</td><td>55</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>16</td><td>Seat Selection / SkyMiles / Pre-Check</td><td>Task Import Date</td><td>7</td><td><span style="color:var(--green);">After</span></td></tr>
+            <tr><td>17</td><td>Send Insurance Quote</td><td>Task Import Date</td><td>0</td><td>Same Day</td></tr>
+            <tr><td>18</td><td>Photo Shoot Email</td><td>Trip Start Date</td><td>40</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>19</td><td>ETA and ETIAS</td><td>Trip Start Date</td><td>10</td><td><span style="color:var(--red);">Before</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon">🏨</span> Hotel Only New</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Task Name</th><th>Trigger</th><th>Days</th><th>Dir.</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>VIP Client</td><td>Trip Start Date</td><td>7</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>2</td><td>Insurance</td><td>Task Import Date</td><td>1</td><td><span style="color:var(--green);">After</span></td></tr>
+            <tr><td>3</td><td>Send Bon Voyage Email</td><td>Trip Start Date</td><td>2</td><td><span style="color:var(--red);">Before</span></td></tr>
+            <tr><td>4</td><td>Send Welcome Home Email</td><td>Trip End Date</td><td>2</td><td><span style="color:var(--green);">After</span></td></tr>
+            <tr><td>5</td><td>Check In with Client Day One of Trip</td><td>Trip Start Date</td><td>1</td><td><span style="color:var(--green);">After</span></td></tr>
+            <tr><td>6</td><td>ETA and ETIAS Requirement</td><td>Trip Start Date</td><td>8</td><td><span style="color:var(--red);">Before</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ PAYMENT -->
+<section id="payment">
+  <div class="section-header">
+    <h2>Payment Reminder Workflow</h2>
+    <span class="badge">Setup Guide</span>
+  </div>
+
+  <div class="callout warning">
+    <strong>Current limitation:</strong> Credit cards are not captured in Tern, so payment reminders are based on <strong>Trip Start Date</strong>, not payment due date. Use the payment calculator to determine the correct number of days.
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> Step-by-Step Setup</div>
+    <ol class="steps">
+      <li>
+        <p><strong>Trigger the workflow:</strong> Open the trip record. Confirm Trip Start Date and final payment due date are entered. Change Trip Status to <strong>Booked</strong>.</p>
+      </li>
+      <li>
+        <p><strong>Confirm tasks were created:</strong> After status changes to Booked, verify the following appear in the task list.</p>
+      </li>
+      <li>
+        <p><strong>Activate the workflow:</strong> Open task "Activate payment reminders to send to client." Confirm email notification is <strong>OFF</strong> (internal task only). Mark the task <strong>Complete</strong>.</p>
+      </li>
+      <li>
+        <p><strong>Adjust timing per trip:</strong> Edit the 62-day or 32-day reminder as needed (e.g., change 62 → 48 days based on actual payment due date).</p>
+      </li>
+      <li>
+        <p><strong>Multiple suppliers:</strong> If trip has multiple suppliers with varying due dates, add the Payment Reminder automation template multiple times — one per payment.</p>
+      </li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span> Default Payment Reminder Tasks</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Task Name</th><th>Due Date Logic</th><th>Default Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Activate payment reminders to send to client</td>
+            <td>2 days after task creation</td>
+            <td><span class="pill pill-active">Active</span></td>
+          </tr>
+          <tr>
+            <td>Payment Reminder (62 days before trip start)</td>
+            <td>Trip Start Date – 62 days</td>
+            <td><span class="pill pill-inactive">Inactive</span></td>
+          </tr>
+          <tr>
+            <td>Payment Reminder (32 days before trip start)</td>
+            <td>Trip Start Date – 32 days</td>
+            <td><span class="pill pill-inactive">Inactive</span> — Manual activate only if needed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🧮</span> Payment Calculator — How to Use</div>
+    <ol class="steps">
+      <li><p>Open the Payment Calculator worksheet in the spreadsheet.</p></li>
+      <li><p>Enter the <strong>trip start date</strong> and the <strong>payment due date</strong>.</p></li>
+      <li><p>The calculator subtracts the trip start date from the payment due date and adds a <strong>10-day buffer</strong>.</p></li>
+      <li><p>Use the result (number of days) when setting up your payment reminder trigger in Tern.</p></li>
+    </ol>
+    <div class="callout" style="margin-top:14px; margin-bottom:0;">
+      <strong>Example:</strong> Trip Start = June 15, 2026. Final payment due = February 15, 2026 (120 days before trip start). Enter these dates → calculator returns the correct trigger day offset including the 10-day buffer.
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ VENDORS -->
+<section id="vendors">
+  <div class="section-header">
+    <h2>Vendor Commission Practices</h2>
+    <span class="badge">10 Vendors</span>
+  </div>
+
+  <div class="callout info">Reference guide for how each vendor handles commission payments. Always verify current instructions with each vendor.</div>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Vendor</th><th>Commission Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Andy Swann Voyages</strong></td>
+            <td class="vendor-note">Send a commission invoice (including hotel commission) to Andy Swann directly.</td>
+          </tr>
+          <tr>
+            <td><strong>Bella Amalfi</strong></td>
+            <td class="vendor-note">Pay via PayPal to <a class="ext" href="/cdn-cgi/l/email-protection#721e171932111d1301061e1b1c1706001304171e5c111d1f"><span class="__cf_email__" data-cfemail="7418111f34171b150700181d1a110006150211185a171b19">[email&#160;protected]</span></a>. Note the booking and agent's name when processing so they can identify the commission.</td>
+          </tr>
+          <tr>
+            <td><strong>BubbleGlobe</strong></td>
+            <td class="vendor-note">Send as soon as activities are completed. Very responsive.</td>
+          </tr>
+          <tr>
+            <td><strong>Context</strong></td>
+            <td class="vendor-note">Will send commission without invoice.</td>
+          </tr>
+          <tr>
+            <td><strong>Flytographer</strong></td>
+            <td class="vendor-note">Commission payments are issued <strong>quarterly</strong>.</td>
+          </tr>
+          <tr>
+            <td><strong>Hawaii Concierge - Maui</strong></td>
+            <td class="vendor-note">No need to invoice — will send the commission automatically.</td>
+          </tr>
+          <tr>
+            <td><strong>La Cuisine</strong></td>
+            <td class="vendor-note">Save commissions until end of year; send an invoice when ready to receive. Commission = <strong>10% of pre-tax cost</strong>.</td>
+          </tr>
+          <tr>
+            <td><strong>Tempo VIP</strong></td>
+            <td class="vendor-note">No invoice needed — commission payments are scheduled automatically <strong>one week after client departure</strong>. Payments go directly to Coastline with Barbara's name, their ref number, and client surname.</td>
+          </tr>
+          <tr>
+            <td><strong>Travel Insured - Canadian</strong></td>
+            <td class="vendor-note"><strong>15% commission</strong>, pays out following month (can take 60–90 days to appear on commission reports). Pending approval for Coastline on Canada travel insurance. Email: <a class="ext" href="/cdn-cgi/l/email-protection#2a6b4e5c43594558795f5a5a45585e6a5e584b5c4f464344595f584f4e04494547"><span class="__cf_email__" data-cfemail="3a7b5e4c53495548694f4a4a55484e7a4e485b4c5f565354494f485f5e14595557">[email&#160;protected]</span></a> (cc: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="711a1210030514033105031007141d181f02040314155f121e1c">[email&#160;protected]</a>).</td>
+          </tr>
+          <tr>
+            <td><strong>Voyage By Pascale</strong></td>
+            <td class="vendor-note">Will send commission without invoice.</td>
+          </tr>
+          <tr>
+            <td><strong>Walks Inside Rome</strong></td>
+            <td class="vendor-note">Send commission invoice to <a class="ext" href="/cdn-cgi/l/email-protection#6a0d0305180d030b2a1d0b060119030419030e0f1805070f44090507"><span class="__cf_email__" data-cfemail="27404e4855404e466750464b4c544e49544e434255484a420944484a">[email&#160;protected]</span></a>. Invoice must be in <strong>euros (€)</strong>. Commission paid at beginning of month following client departure.</td>
+          </tr>
+          <tr>
+            <td><strong>Yellow Moon Tours</strong></td>
+            <td class="vendor-note"><strong>15% commission</strong>. Address invoice to "Yellow Moon Tours LTD" and send to <a class="ext" href="/cdn-cgi/l/email-protection#f09193939f859e8483b089959c9c9f879d9f9f9e849f858283de939f9d"><span class="__cf_email__" data-cfemail="0b6a6868647e657f784b726e6767647c666464657f647e797825686466">[email&#160;protected]</span></a>. Processed within 14 days of receipt.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════ TRAINING -->
+<section id="training">
+  <div class="section-header">
+    <h2>Training Videos</h2>
+    <span class="badge">Video Library</span>
+  </div>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Topic</th><th>Program</th><th>Link</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Creating an itinerary</td>
+            <td><span class="cat">Axus</span></td>
+            <td><a class="ext" href="https://vimeo.com/777965118/a92818a08b" target="_blank">Watch ↗</a></td>
+          </tr>
+          <tr>
+            <td>Adding flights</td>
+            <td><span class="cat">Axus</span></td>
+            <td><a class="ext" href="https://vimeo.com/777965646/7cedd394a2" target="_blank">Watch ↗</a></td>
+          </tr>
+          <tr>
+            <td>Adding hotel</td>
+            <td><span class="cat">Axus</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Axus - Itineraries Overview</td>
+            <td><span class="cat">Axus</span></td>
+            <td><a class="ext" href="https://vimeo.com/825064897/c6d76c91f6" target="_blank">Watch ↗</a></td>
+          </tr>
+          <tr>
+            <td>Adding Vendors</td>
+            <td><span class="cat">Airtable</span></td>
+            <td><a class="ext" href="https://vimeo.com/528132848/f5e59f31cc" target="_blank">Watch ↗</a></td>
+          </tr>
+          <tr>
+            <td>Vendor search / creating views</td>
+            <td><span class="cat">Airtable</span></td>
+            <td><a class="ext" href="https://vimeo.com/524504550/77d9b6ab6e" target="_blank">Watch ↗</a></td>
+          </tr>
+          <tr>
+            <td>Create invoice and pay for client + delete invoice</td>
+            <td><span class="cat">NTCE PAY</span></td>
+            <td><a class="ext" href="https://vimeo.com/1023803494/a56a220c91" target="_blank">Watch ↗</a></td>
+          </tr>
+          <tr>
+            <td>Commission Follow Up SOP</td>
+            <td><span class="cat">Sion</span></td>
+            <td>Commissions Tracking SOP</td>
+          </tr>
+          <tr>
+            <td>Making split picture for Axus itinerary</td>
+            <td><span class="cat">Canva</span></td>
+            <td><a class="ext" href="https://vimeo.com/1040150518/10bc29e02c" target="_blank">Watch ↗</a></td>
+          </tr>
+          <tr>
+            <td>SOP Overview (Loom)</td>
+            <td><span class="cat">Tern</span></td>
+            <td><a class="ext" href="https://loom.com/share/a880d3aa632940e5b2e315b941853f72" target="_blank">Watch ↗</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔗</span> Useful Links</div>
+    <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+      <div>📅 <strong>Calendly (Barbara):</strong> <a class="ext" href="https://calendly.com/baweindling/30-minute-meeting?month=2026-01" target="_blank">calendly.com/baweindling</a></div>
+      <div>🏨 <strong>Hotel Portal:</strong> <a class="ext" href="https://travelpro365.com/consumer/WeindlingWorldTravel" target="_blank">travelpro365.com — WeindlingWorldTravel</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<a id="back-top" href="#" title="Back to top">↑</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Tab switching
+  const tabs = 
