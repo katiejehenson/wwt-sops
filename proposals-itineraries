@@ -3,1263 +3,416 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weindling World Travel — Axus Itinerary SOP</title>
+<title>Weindling World Travel — Operations Hub</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap');
 
   :root {
-    --ink:    #1c1c1e;
-    --sand:   #f5f0e8;
-    --cream:  #fdfaf5;
-    --gold:   #b8964e;
-    --gold-lt:#d4b06a;
-    --slate:  #3d4852;
-    --muted:  #7a7e85;
-    --border: #e2dbd0;
-    --white:  #ffffff;
-    --red:    #8b2020;
-    --green:  #1f5c3a;
-    --amber:  #7a4f00;
-    --blue:   #1c3a5e;
-    --pill-r-bg: #fdf0f0;
-    --pill-g-bg: #eef7f2;
-    --pill-a-bg: #fdf6e8;
-    --r: 6px;
+    --navy:  #1a2744;
+    --gold:  #b8964e;
+    --cream: #fdfaf5;
+    --sand:  #f0ebe0;
+    --text:  #2c2c2c;
+    --muted: #7a7e85;
+    --border:#ddd6cc;
+    --white: #ffffff;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
+  html { height: 100%; }
 
   body {
     font-family: 'Jost', sans-serif;
     background: var(--cream);
-    color: var(--ink);
-    line-height: 1.65;
-    font-size: 15px;
+    color: var(--text);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* ─── HERO ─────────────────────────────────────────────── */
-  .hero {
-    background: var(--slate);
+  /* ── HEADER ─────────────────────────────────── */
+  header {
+    background: var(--navy);
     color: var(--white);
-    padding: 56px 64px 48px;
+    padding: 60px 40px 52px;
+    text-align: center;
     position: relative;
     overflow: hidden;
   }
-  .hero::before {
+  header::before {
     content: '';
     position: absolute;
     inset: 0;
     background: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 40px,
-      rgba(255,255,255,.015) 40px,
-      rgba(255,255,255,.015) 80px
+      -45deg, transparent, transparent 50px,
+      rgba(255,255,255,.02) 50px, rgba(255,255,255,.02) 100px
     );
   }
-  .hero-inner { position: relative; max-width: 860px; }
-  .hero-tag {
-    display: inline-block;
-    font-family: 'Jost', sans-serif;
+  .header-inner { position: relative; }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .logo-symbol {
+    width: 48px; height: 48px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: -1px;
+  }
+  .logo-text {
+    text-align: left;
+  }
+  .logo-text .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: .5px;
+  }
+  .logo-text .sub {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    letter-spacing: -.3px;
+  }
+  header h1 em { color: var(--gold); font-style: italic; }
+  header p {
+    color: rgba(255,255,255,.6);
+    font-size: 14.5px;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── MAIN ───────────────────────────────────── */
+  main {
+    flex: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 32px 80px;
+    width: 100%;
+  }
+
+  .section-label {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--gold-lt);
-    border: 1px solid rgba(184,150,78,.4);
-    padding: 4px 12px;
-    border-radius: 2px;
-    margin-bottom: 18px;
-  }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    font-weight: 500;
-    line-height: 1.1;
-    margin-bottom: 14px;
-    letter-spacing: -.5px;
-  }
-  .hero h1 em { color: var(--gold-lt); font-style: italic; }
-  .hero p {
-    font-size: 15px;
-    color: rgba(255,255,255,.65);
-    max-width: 540px;
-    line-height: 1.7;
-  }
-  .hero-meta {
-    display: flex;
-    gap: 28px;
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,.1);
-    flex-wrap: wrap;
-  }
-  .hero-meta-item { font-size: 12px; color: rgba(255,255,255,.5); }
-  .hero-meta-item strong { display: block; color: rgba(255,255,255,.85); font-size: 13px; font-weight: 500; }
-
-  /* ─── NAV ───────────────────────────────────────────────── */
-  .sticky-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 1px 12px rgba(0,0,0,.06);
-  }
-  .nav-inner {
-    max-width: 1060px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .nav-inner::-webkit-scrollbar { display: none; }
-  .nav-tab {
-    padding: 16px 22px 14px;
-    font-size: 12.5px;
-    font-weight: 500;
-    letter-spacing: .3px;
-    color: var(--muted);
-    text-decoration: none;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: color .2s, border-color .2s;
-    cursor: pointer;
-    background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-family: 'Jost', sans-serif;
-  }
-  .nav-tab:hover { color: var(--ink); }
-  .nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
-
-  /* ─── LAYOUT ────────────────────────────────────────────── */
-  .page { max-width: 1060px; margin: 0 auto; padding: 48px 40px 100px; }
-  section { display: none; animation: fadeIn .3s ease; }
-  section.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-
-  /* ─── SECTION HEADER ────────────────────────────────────── */
-  .sec-header {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    margin-bottom: 32px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid var(--border);
-  }
-  .sec-header h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 500;
-    color: var(--slate);
-  }
-  .sec-header .sec-num {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
     color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
   }
 
-  /* ─── INTRO CALLOUT ─────────────────────────────────────── */
-  .intro-box {
-    background: var(--slate);
-    color: var(--white);
-    border-radius: var(--r);
-    padding: 24px 28px;
-    margin-bottom: 28px;
-    font-size: 14px;
-    line-height: 1.7;
+  /* ── DOC CARDS ──────────────────────────────── */
+  .doc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 48px;
   }
-  .intro-box strong { color: var(--gold-lt); }
+  @media (max-width: 600px) { .doc-grid { grid-template-columns: 1fr; } }
 
-  /* ─── STEP BLOCKS ───────────────────────────────────────── */
-  .step-group { margin-bottom: 32px; }
-  .step-group-title {
+  .doc-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .doc-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,.1);
+    transform: translateY(-2px);
+  }
+  .doc-card-top {
+    background: var(--navy);
+    padding: 28px 24px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-card-top::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(184,150,78,.15);
+  }
+  .doc-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+    position: relative;
+  }
+  .doc-card-top h2 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--slate);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    color: var(--white);
+    line-height: 1.25;
+    position: relative;
   }
-  .step-group-title::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
+  .doc-card-top .doc-type {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    position: relative;
   }
 
-  .step {
-    display: grid;
-    grid-template-columns: 36px 1fr;
-    gap: 0 16px;
-    margin-bottom: 20px;
-    align-items: start;
+  .doc-card-body {
+    padding: 20px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
-  .step-num {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--gold);
-    color: var(--white);
+  .doc-card-body p {
     font-size: 13px;
-    font-weight: 600;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .doc-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .doc-tab-pill {
+    background: var(--sand);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+  .doc-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
+    gap: 8px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Jost', sans-serif;
+    text-decoration: none;
+    transition: background .2s;
   }
-  .step-body { padding-top: 6px; }
-  .step-body h4 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 5px;
-  }
-  .step-body p, .step-body ul, .step-body ol {
-    font-size: 13.5px;
-    color: #4a4a52;
-    line-height: 1.65;
-  }
-  .step-body ul { padding-left: 18px; }
-  .step-body ul li { margin-bottom: 4px; }
-  .step-body ol { padding-left: 18px; }
-  .step-body ol li { margin-bottom: 4px; }
+  .doc-btn:hover { background: #253660; }
+  .doc-btn .arrow { font-size: 16px; }
 
-  /* ─── CALLOUT VARIANTS ──────────────────────────────────── */
-  .callout {
-    border-radius: var(--r);
-    padding: 14px 18px;
-    margin: 14px 0;
-    font-size: 13.5px;
-    line-height: 1.6;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .callout .ci { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
-  .callout.warn  { background: var(--pill-r-bg); border-left: 3px solid var(--red);   color: #4a2020; }
-  .callout.tip   { background: var(--pill-g-bg); border-left: 3px solid var(--green); color: #1a3d2a; }
-  .callout.note  { background: var(--pill-a-bg); border-left: 3px solid var(--gold);  color: #4a3800; }
-  .callout.info  { background: #eef2f8;          border-left: 3px solid var(--blue);  color: #1c2f4a; }
-  .callout strong { font-weight: 600; }
-
-  /* ─── CHECKLIST ─────────────────────────────────────────── */
-  .checklist { list-style: none; padding: 0; margin: 10px 0; }
-  .checklist li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 9px 14px;
-    border-radius: var(--r);
-    font-size: 13.5px;
-    line-height: 1.55;
-    margin-bottom: 6px;
+  /* ── RULES STRIP ────────────────────────────── */
+  .rules {
     background: var(--white);
     border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
   }
-  .checklist li::before {
-    content: '☐';
-    font-size: 15px;
+  .rules h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rules ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+  @media (max-width: 540px) { .rules ul { grid-template-columns: 1fr; } }
+  .rules li {
+    font-size: 13px;
+    color: #4a4a52;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .rules li::before {
+    content: '—';
     color: var(--gold);
     flex-shrink: 0;
-    margin-top: 1px;
+    font-weight: 600;
   }
-  .checklist li strong { color: var(--ink); }
 
-  /* ─── DO / DON'T ────────────────────────────────────────── */
-  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
-  @media (max-width: 640px) { .do-dont { grid-template-columns: 1fr; } }
-  .do-box, .dont-box {
-    border-radius: var(--r);
-    padding: 18px 20px;
-    font-size: 13px;
-    line-height: 1.6;
+  /* ── LINKS STRIP ────────────────────────────── */
+  .links-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
   }
-  .do-box {
-    background: var(--pill-g-bg);
-    border: 1px solid #b8ddc8;
-  }
-  .dont-box {
-    background: var(--pill-r-bg);
-    border: 1px solid #e8b8b8;
-  }
-  .do-box h5 { color: var(--green); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
-  .dont-box h5 { color: var(--red); font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
-  .do-box ul, .dont-box ul { padding-left: 16px; }
-  .do-box li, .dont-box li { margin-bottom: 5px; }
-
-  /* ─── TWO COL ───────────────────────────────────────────── */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
-  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
-
-  /* ─── CARD ──────────────────────────────────────────────── */
-  .card {
+  .link-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     background: var(--white);
     border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 22px 24px;
-    margin-bottom: 20px;
-  }
-  .card h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--slate);
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  .card p, .card ul { font-size: 13.5px; color: #4a4a52; line-height: 1.65; }
-  .card ul { padding-left: 18px; margin-top: 6px; }
-  .card ul li { margin-bottom: 4px; }
-
-  /* ─── TABLE ─────────────────────────────────────────────── */
-  .tbl-wrap { overflow-x: auto; margin: 14px 0; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  thead th {
-    background: var(--slate);
-    color: var(--white);
-    text-align: left;
-    padding: 10px 14px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  tbody tr { border-bottom: 1px solid var(--border); }
-  tbody tr:nth-child(even) { background: var(--sand); }
-  tbody td { padding: 10px 14px; vertical-align: top; line-height: 1.5; }
-
-  /* ─── PILL ──────────────────────────────────────────────── */
-  .pill {
-    display: inline-block;
-    padding: 2px 9px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-  .pill-r { background: var(--pill-r-bg); color: var(--red); }
-  .pill-g { background: var(--pill-g-bg); color: var(--green); }
-  .pill-a { background: var(--pill-a-bg); color: var(--amber); }
-  .pill-b { background: #eef2f8; color: var(--blue); }
-
-  /* ─── IMAGE SECTION ─────────────────────────────────────── */
-  .img-example {
-    border: 2px solid var(--border);
-    border-radius: var(--r);
-    overflow: hidden;
-    margin: 12px 0;
-  }
-  .img-example-header {
-    background: var(--sand);
+    border-radius: 6px;
     padding: 8px 14px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-    border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--navy);
+    text-decoration: none;
+    transition: border-color .2s, box-shadow .2s;
   }
-  .img-example-body { padding: 16px; font-size: 13px; line-height: 1.6; color: #4a4a52; }
+  .link-chip:hover {
+    border-color: var(--gold);
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .link-chip .chip-icon { font-size: 14px; }
 
-  /* ─── DIVIDER ───────────────────────────────────────────── */
-  .divider {
-    border: none;
+  /* ── FOOTER ─────────────────────────────────── */
+  footer {
     border-top: 1px solid var(--border);
-    margin: 28px 0;
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
   }
-
-  /* ─── BACK TO TOP ───────────────────────────────────────── */
-  #btt {
-    position: fixed; bottom: 24px; right: 24px;
-    background: var(--slate); color: var(--white);
-    width: 40px; height: 40px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; cursor: pointer; z-index: 200;
-    box-shadow: 0 4px 16px rgba(0,0,0,.2);
-    opacity: 0; transition: opacity .3s;
-    border: none;
-  }
-  #btt.show { opacity: 1; }
-
-  /* ─── PROGRESS BAR ──────────────────────────────────────── */
-  .progress-bar {
-    position: fixed; top: 0; left: 0;
-    height: 3px; background: var(--gold);
-    z-index: 999; transition: width .1s;
-    width: 0%;
-  }
-
+  footer a { color: var(--gold); text-decoration: none; }
 </style>
 </head>
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">Internal Document · VA Training</div>
-    <h1>Axus Itinerary<br><em>Build &amp; Review SOP</em></h1>
-    <p>Standard operating procedures for building final client itineraries in Axus and conducting a thorough pre-send quality review — based on Barbara's standards and confirmed itinerary examples.</p>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><strong>Prepared for</strong> Virtual Admin (VA)</div>
-      <div class="hero-meta-item"><strong>Platform</strong> Axus Travel App</div>
-      <div class="hero-meta-item"><strong>Reference Itineraries</strong> Morocco (Final) · Greece (Proposal)</div>
-      <div class="hero-meta-item"><strong>Owner</strong> Barbara Weindling, WWT</div>
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-symbol">W</div>
+      <div class="logo-text">
+        <div class="brand">Weindling World Travel</div>
+        <div class="sub">Operations Hub</div>
+      </div>
     </div>
+    <h1>Internal <em>Reference</em> Library</h1>
+    <p>Standard operating procedures and workflow guides for the virtual admin team.</p>
   </div>
 </header>
 
-<!-- NAV -->
-<nav class="sticky-nav">
-  <div class="nav-inner">
-    <button class="nav-tab active" data-target="overview">Overview</button>
-    <button class="nav-tab" data-target="build">Part 1: Building</button>
-    <button class="nav-tab" data-target="images">Part 2: Images</button>
-    <button class="nav-tab" data-target="review">Part 3: QA Review</button>
-    <button class="nav-tab" data-target="elements">Element Standards</button>
-    <button class="nav-tab" data-target="final">Final &amp; Proposal Diff</button>
-    <button class="nav-tab" data-target="errors">Common Errors</button>
-  </div>
-</nav>
+<main>
 
-<div class="page">
+  <span class="section-label">Documents</span>
 
-<!-- ══════════════════════════════════ OVERVIEW -->
-<section id="overview" class="active">
-  <div class="sec-header">
-    <span class="sec-num">00</span>
-    <h2>How to Use This SOP</h2>
-  </div>
+  <div class="doc-grid">
 
-  <div class="intro-box">
-    <strong>Barbara's standard:</strong> Every itinerary that leaves this agency must look polished, read clearly, and feel like it was built with care for that specific client. The VA's job is to build the itinerary structure faithfully, select images that are crisp and destination-appropriate, and conduct a thorough review before it ever reaches Barbara for a final check. <strong>Never send an itinerary to a client — always route back to Barbara.</strong>
-  </div>
-
-  <div class="two-col">
-    <div class="card">
-      <h4>Two Itinerary Types</h4>
-      <p><span class="pill pill-a">Proposal</span> — Sent before booking is confirmed. Includes pricing, room rates, confirmation references. Example: <em>Greece / Pekin Family</em>.</p>
-      <p style="margin-top:10px;"><span class="pill pill-b">Final Itinerary</span> — Sent once everything is booked and confirmed. Pricing is removed. Record locators, confirmation numbers, and all logistics are finalized. Example: <em>Morocco / Chang Homer</em>.</p>
-    </div>
-    <div class="card">
-      <h4>VA Scope of Work</h4>
-      <ul>
-        <li>Build itinerary structure in Axus per Barbara's instructions</li>
-        <li>Source and upload images for every section</li>
-        <li>Enter all supplier details, contact info, and descriptions</li>
-        <li>Conduct the full QA review checklist</li>
-        <li>Flag issues back to Barbara — never fix content unilaterally</li>
-        <li>Never send the itinerary to the client</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card">
-    <h4>The Three Phases</h4>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Phase</th><th>What You Do</th><th>Output</th></tr></thead>
-        <tbody>
-          <tr><td><strong>1 — Build</strong></td><td>Assemble all sections in Axus in the correct order with all required fields</td><td>Draft itinerary in Axus</td></tr>
-          <tr><td><strong>2 — Images</strong></td><td>Source, evaluate, and upload one hero image per section; replace any blurry or off-brand images</td><td>All sections have crisp, relevant images</td></tr>
-          <tr><td><strong>3 — QA Review</strong></td><td>Run through the full checklist: timing gaps, missing info, typos, T&amp;C accuracy, supplier T&amp;Cs</td><td>QA notes doc sent to Barbara</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════ PART 1: BUILDING -->
-<section id="build">
-  <div class="sec-header">
-    <span class="sec-num">01</span>
-    <h2>Building the Itinerary in Axus</h2>
-  </div>
-
-  <div class="callout note">
-    <span class="ci">📋</span>
-    <div>Always start from Barbara's notes, the supplier confirmation documents, and any existing proposal. Build section by section in chronological order. Do not skip sections — placeholder content is not acceptable.</div>
-  </div>
-
-  <!-- STRUCTURE -->
-  <div class="step-group">
-    <div class="step-group-title">Itinerary Structure &amp; Order</div>
-
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <h4>Header / Cover Page</h4>
-        <p>Axus auto-populates the WWT logo and Barbara's contact info. Verify these are correct. Set the itinerary title to: <em>[Client Last Name(s)] [Destination] [Trip Theme]</em> — e.g., "Chang Homer Morocco Adventure" or "Pekin Family Greece Empty Nest Adventure." Set trip date range in the subtitle bar. Upload the hero cover image (see Image standards).</p>
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <span class="doc-icon">⚙️</span>
+        <h2>Tern Workflow &amp; Template Guide</h2>
+        <div class="doc-type">CRM Reference</div>
       </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <h4>Pre Travel Section (always first)</h4>
-        <p>This section always appears before Day 1 and contains four standard sub-sections in this order:</p>
-        <ol>
-          <li><strong>IMPORTANT: Travel Policies</strong> — Use Barbara's standard template. Do not edit content.</li>
-          <li><strong>Before You Fly Reminders</strong> — Standard template. Confirm the Axus App download reminder is included.</li>
-          <li><strong>Emergency Contacts in [Destination]</strong> — Pull from supplier documents. Include the local contact names, WhatsApp group setup info, email, and phone. If the supplier uses a group chat system (as in Greece), copy that exactly.</li>
-          <li><strong>Preparing for Your Trip to [Destination]</strong> — Destination-specific section sourced from the supplier. Includes weather, dress code, currency, tipping guidelines, packing tips, etc. If the supplier provides this content, use it verbatim.</li>
-        </ol>
-        <p style="margin-top:8px;">For trips with guide-specific information (like Morocco), add a <strong>Guide Information</strong> sub-section after the destination prep content.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <h4>Day-by-Day Sections</h4>
-        <p>Each day gets its own date header (e.g., "Saturday · April 18th"). Within each day, add elements in chronological order. The standard element types are:</p>
-        <ul>
-          <li><strong>Flights</strong> — Always first if departing that day</li>
-          <li><strong>Transfers / Arrivals</strong> — Including VIP services</li>
-          <li><strong>Hotel / Accommodation</strong> — Immediately after arrival transfer</li>
-          <li><strong>Activities / Tours / Experiences</strong> — In time order</li>
-          <li><strong>Dining reservations</strong> — Evening reservations appear at the end of the day they occur</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-body">
-        <h4>Supplier Terms &amp; Conditions</h4>
-        <p>T&amp;Cs appear as the very last item in the itinerary — after the final day's content, including the return flight. In Axus, add each supplier's T&amp;Cs as a document/note entry. The Morocco itinerary shows "Shin Luxury Tours Terms &amp; Conditions" placed after the final flight. Include:</p>
-        <ul>
-          <li>Supplier overview / mission statement</li>
-          <li>Vehicle and guide standards</li>
-          <li>Inclusions and Exclusions lists</li>
-          <li>Payment terms and cancellation policy</li>
-          <li>Any special service notes (e.g., Fast Track limitations)</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">5</div>
-      <div class="step-body">
-        <h4>Image Credits</h4>
-        <p>If any images are sourced from Unsplash or a credited photographer, add the credit line in the footer or as a note on the cover image. Example from the Greece proposal: <em>"Image credits: Spencer Davis on Unsplash."</em> Barbara expects proper attribution when stock images are used.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ELEMENT ENTRY -->
-  <div class="step-group">
-    <div class="step-group-title">Entering Each Element</div>
-
-    <div class="step">
-      <div class="step-num">6</div>
-      <div class="step-body">
-        <h4>Flights</h4>
-        <p>Required fields for every flight:</p>
-        <ul>
-          <li>Record locator (PNR)</li>
-          <li>Carrier name and flight number</li>
-          <li>Departure airport code + time</li>
-          <li>Arrival airport code + time (note +1 for next-day arrivals)</li>
-          <li>Flight duration</li>
-          <li>Passenger names and seat assignments (when available)</li>
-          <li>Baggage allowance if a specific fare class applies (e.g., ComfortFlex)</li>
-        </ul>
-        <p style="margin-top:6px;">Full airport names appear in the section title (e.g., "New York, New York John F. Kennedy International Airport to Casablanca, Casablanca Mohammed V International Airport"). The airline name appears in italics below.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">7</div>
-      <div class="step-body">
-        <h4>Transfers</h4>
-        <p>Required fields:</p>
-        <ul>
-          <li>Driver/company name and phone number</li>
-          <li>Departure location and arrival location</li>
-          <li>Vehicle type</li>
-          <li>Number of passengers</li>
-          <li>Duration</li>
-          <li>Rate (proposal only — remove for final)</li>
-        </ul>
-        <p style="margin-top:6px;">For VIP airport services, list the full service description as provided by the supplier, including exactly what the VIP assistant will do (welcome at gate, fast-track, luggage, escort, etc.).</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">8</div>
-      <div class="step-body">
-        <h4>Hotels / Accommodation</h4>
-        <p>Required fields:</p>
-        <ul>
-          <li>Hotel name, phone number, full address</li>
-          <li>Check-in and check-out dates and times</li>
-          <li>Number of nights</li>
-          <li>Hotel description (from supplier or hotel website)</li>
-          <li>Amenities list (e.g., daily breakfast, welcome drink, spa credit)</li>
-          <li>Room Category, Bedding type, Room description</li>
-          <li>Confirmation reference number</li>
-          <li>Number of guests</li>
-          <li>Nightly room rate and total price (proposal only)</li>
-          <li>Payment notes if applicable</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">9</div>
-      <div class="step-body">
-        <h4>Activities / Tours / Experiences</h4>
-        <p>Required fields:</p>
-        <ul>
-          <li>Activity name</li>
-          <li>Supplier phone number (in the title area, linked)</li>
-          <li>Start time, End time, Duration</li>
-          <li>Meeting point</li>
-          <li>Description (from supplier documents)</li>
-          <li>Included items list</li>
-          <li>Notes section: practical tips, dietary notes, attire recommendations, difficulty level, etc.</li>
-          <li>Rate (proposal only)</li>
-        </ul>
-        <div class="callout tip" style="margin-top:10px;">
-          <span class="ci">✅</span>
-          <div>Any supplier notes that are written in orange/colored text in Barbara's reference itineraries are <strong>internal or client-facing advisories</strong> — keep these in the Notes field in Axus, styled appropriately so they stand out.</div>
+      <div class="doc-card-body">
+        <p>The master reference for the Tern CRM — workflows, email templates, forms, task lists, vendor commissions, and training videos.</p>
+        <div class="doc-tabs">
+          <span class="doc-tab-pill">Summary</span>
+          <span class="doc-tab-pill">SOP</span>
+          <span class="doc-tab-pill">TJ Templates</span>
+          <span class="doc-tab-pill">Tern Workflows</span>
+          <span class="doc-tab-pill">Forms</span>
+          <span class="doc-tab-pill">Task Lists</span>
+          <span class="doc-tab-pill">Payments</span>
+          <span class="doc-tab-pill">Vendors</span>
+          <span class="doc-tab-pill">Training</span>
         </div>
+        <a class="doc-btn" href="weindling-tern-guide.html">Open Guide <span class="arrow">→</span></a>
       </div>
     </div>
 
-    <div class="step">
-      <div class="step-num">10</div>
-      <div class="step-body">
-        <h4>Dining Reservations</h4>
-        <p>Required fields:</p>
-        <ul>
-          <li>Restaurant name + "· Dining Reservation" appended to the title</li>
-          <li>Phone number</li>
-          <li>Full address</li>
-          <li>Website URL (when available)</li>
-          <li>Reservation time (shown as Start Time)</li>
-          <li>Confirmed By field (e.g., "Booked On Own" if client booked directly)</li>
-        </ul>
-        <p style="margin-top:6px;">If dinner cost is not included in the package, add a note: <em>(Cost of dinner is not included).</em></p>
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <span class="doc-icon">✈️</span>
+        <h2>Axus Itinerary Build &amp; Review SOP</h2>
+        <div class="doc-type">VA Procedure</div>
+      </div>
+      <div class="doc-card-body">
+        <p>How to build final client itineraries in Axus, source and upload images to Barbara's standards, and conduct a thorough QA review before sending to Barbara.</p>
+        <div class="doc-tabs">
+          <span class="doc-tab-pill">Overview</span>
+          <span class="doc-tab-pill">Building</span>
+          <span class="doc-tab-pill">Images</span>
+          <span class="doc-tab-pill">QA Review</span>
+          <span class="doc-tab-pill">Element Standards</span>
+          <span class="doc-tab-pill">Final vs Proposal</span>
+          <span class="doc-tab-pill">Common Errors</span>
+        </div>
+        <a class="doc-btn" href="WWT_Itinerary_SOP.html">Open SOP <span class="arrow">→</span></a>
       </div>
     </div>
 
-    <div class="step">
-      <div class="step-num">11</div>
-      <div class="step-body">
-        <h4>Restaurant Recommendations / Free Time Sections</h4>
-        <p>When clients have unstructured time, add a section titled "Restaurant Recommendations and Suggestions of What to do on your own." Upload a relevant destination image. Link to the corresponding Axus document (e.g., "Athens Recommendations") so clients can access a curated list.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════ PART 2: IMAGES -->
-<section id="images">
-  <div class="sec-header">
-    <span class="sec-num">02</span>
-    <h2>Image Standards</h2>
   </div>
 
-  <div class="intro-box">
-    <strong>Barbara is particular about images.</strong> Every section must have a hero image. Images must be crisp, clear, high-resolution, and directly relevant to the specific place, hotel, restaurant, or experience — not generic stock photos. A blurry, pixelated, or off-topic image reflects poorly on the agency and must be replaced before the itinerary is reviewed.
-  </div>
-
-  <div class="step-group">
-    <div class="step-group-title">Image Quality Standards</div>
-
-    <div class="do-dont">
-      <div class="do-box">
-        <h5>✓ Acceptable Images</h5>
-        <ul>
-          <li>High resolution — minimum 1200px wide for hero images</li>
-          <li>Crisp focus throughout — no motion blur, no soft focus on key subjects</li>
-          <li>Bright and well-lit — no underexposed or muddy images</li>
-          <li>Specific to the actual property, restaurant, or destination</li>
-          <li>Landscape / wide-format images for the hero banner slot</li>
-          <li>True to what the client will experience (not overly staged or AI-generated)</li>
-          <li>Professional photography from hotel/supplier websites</li>
-          <li>Credited Unsplash photos when supplier images are unavailable</li>
-        </ul>
-      </div>
-      <div class="dont-box">
-        <h5>✗ Do Not Use</h5>
-        <ul>
-          <li>Blurry or pixelated images — even slightly blurry is a rejection</li>
-          <li>Low-resolution images that look acceptable small but degrade when expanded</li>
-          <li>Generic stock photos that do not represent the actual location</li>
-          <li>Images with visible watermarks or Getty/Shutterstock overlays</li>
-          <li>Dark or poorly lit interior shots</li>
-          <li>Portrait-orientation images in the hero banner slot</li>
-          <li>AI-generated images</li>
-          <li>Screenshots from Google Maps or review sites</li>
-          <li>Images with visible people's faces unless it is a supplier-provided photo</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="step-group">
-    <div class="step-group-title">Where to Source Images (in priority order)</div>
-
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <h4>Official Hotel / Supplier Website</h4>
-        <p>Always check the property's official site first. Navigate to their Press / Media Kit section if available — these are the highest quality images, pre-approved for use. For restaurants, check their website gallery. Download the largest version available.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <h4>Supplier-Provided Images</h4>
-        <p>If the supplier has sent Barbara a folder of images or included them in their confirmation documents, use those first — they are pre-approved and show the exact product the client has booked.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <h4>Unsplash (unsplash.com)</h4>
-        <p>For destination/city/landmark images, Unsplash is acceptable. Search specifically (e.g., "Fes Morocco medina," not just "Morocco"). Evaluate each result individually — do not take the first result. Choose the sharpest, most evocative image. Note the photographer's name for the credit line.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-body">
-        <h4>Google Images (last resort only)</h4>
-        <p>If no other source works, use Google Images with "Usage Rights: Creative Commons licenses" filter applied. Verify the license allows commercial use. Never hotlink — always download and re-upload. Flag to Barbara that this image was used and confirm she approves before finalization.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="step-group">
-    <div class="step-group-title">Image Assignment by Section Type</div>
-
-    <div class="tbl-wrap">
-      <table>
-        <thead>
-          <tr><th>Section Type</th><th>Image Subject</th><th>Example from Reference Itineraries</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Cover / Hero</td>
-            <td>Iconic, wide landscape of the destination</td>
-            <td>Morocco: Moroccan mosaic arch tile work. Greece: Parthenon columns.</td>
-          </tr>
-          <tr>
-            <td>Destination Prep Section</td>
-            <td>Lively street scene or market in the destination</td>
-            <td>Morocco: Djemaa el-Fna square at sunset.</td>
-          </tr>
-          <tr>
-            <td>Flight</td>
-            <td>The specific airline's aircraft, ideally on tarmac or in flight</td>
-            <td>Morocco: Royal Air Maroc plane against a blue sky.</td>
-          </tr>
-          <tr>
-            <td>Activity / Excursion</td>
-            <td>The actual site, landmark, or type of experience</td>
-            <td>Fez Discovery: carved wooden medina doorway. High Atlas Mountains: mountain terrace landscape.</td>
-          </tr>
-          <tr>
-            <td>Transfer / VIP Service</td>
-            <td>Destination landmark or arrival scene — NOT a photo of a car</td>
-            <td>Fes–Marrakech transfer: Rabat kasbah coastal view.</td>
-          </tr>
-          <tr>
-            <td>Hotel</td>
-            <td>The hotel's best exterior or pool/rooftop photo</td>
-            <td>Le Casablanca: illuminated hotel exterior at dusk. Hotel Sahrai: rooftop pool with palm trees.</td>
-          </tr>
-          <tr>
-            <td>Restaurant / Dining</td>
-            <td>The restaurant's interior dining room or a signature dish</td>
-            <td>L'Amandier: elegant candlelit dining room. Mizzan: outdoor garden terrace seating.</td>
-          </tr>
-          <tr>
-            <td>Free Time / Recommendations</td>
-            <td>Atmospheric scene of the city or neighborhood</td>
-            <td>Athens Recommendations: Acropolis overview from below.</td>
-          </tr>
-          <tr>
-            <td>Cruise / Boat Activity</td>
-            <td>The actual vessel or the caldera/water view</td>
-            <td>Santorini Sunset Cruise: white sailboat against red volcanic cliffs.</td>
-          </tr>
-          <tr>
-            <td>Cooking / Food Experience</td>
-            <td>Ingredients laid out, cooking class, or plated food</td>
-            <td>Cooking &amp; Tasting Experience: cooking ingredients spread on table.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="callout warn" style="margin-top:16px;">
-      <span class="ci">⚠️</span>
-      <div><strong>Before uploading any image:</strong> Open it at full size and zoom to 100%. If there is any softness, grain, or pixelation, do not use it. Barbara reviews the PDF export of itineraries and images must look sharp in print as well as on screen.</div>
-    </div>
-  </div>
-
-  <div class="step-group">
-    <div class="step-group-title">Image Check Before Finalizing</div>
-    <ul class="checklist">
-      <li>Every section has exactly one hero image (no section is image-less)</li>
-      <li>Cover hero image is wide-format, destination-specific, and visually striking</li>
-      <li>All images are sharp at 100% zoom — no exceptions</li>
-      <li>Airline images show the correct airline's aircraft</li>
-      <li>Hotel images match the correct property (double-check on hotel website)</li>
-      <li>Restaurant images show the actual restaurant (not a food photo sourced elsewhere)</li>
-      <li>No watermarks visible anywhere</li>
-      <li>Photo credits added for any Unsplash images used</li>
-      <li>No portrait-orientation images used in banner slots</li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════ PART 3: QA REVIEW -->
-<section id="review">
-  <div class="sec-header">
-    <span class="sec-num">03</span>
-    <h2>QA Review Checklist</h2>
-  </div>
-
-  <div class="intro-box">
-    <strong>The QA review is not optional.</strong> Every itinerary must be reviewed top to bottom before being sent to Barbara. Your job is to identify issues, flag them with notes, and let Barbara make the final call. Document every flag — even things that look intentional but seem unusual.
-  </div>
-
-  <div class="step-group">
-    <div class="step-group-title">A. Logical Flow &amp; Timing Gaps</div>
-
-    <ul class="checklist">
-      <li><strong>Arrival logistics are complete.</strong> If a flight arrives, is there a transfer waiting? Is the hotel check-in time realistic given the arrival time?</li>
-      <li><strong>No unexplained gaps.</strong> If a client has a full free day with no activities listed and no recommendation section, flag it — was this intentional or was something missed?</li>
-      <li><strong>Activity timing makes sense.</strong> If a tour starts at 9:00 AM and the hotel is 1.5 hours away, the pickup time must be listed. Verify drive times match the activity start time.</li>
-      <li><strong>Dinner reservations are not booked too early after a long tour.</strong> e.g., if an 8-hour tour ends in the afternoon and dinner is at 7:30 PM, there is adequate rest time — this is acceptable. Flag if dinner appears to conflict with an experience end time.</li>
-      <li><strong>Day-long drives account for lunch.</strong> Long transfer days (like Fes to Marrakech via Rabat) should note that the guide recommends a restaurant for lunch, or that lunch is included. Flag if a 6-hour drive day has no lunch mention.</li>
-      <li><strong>Departure day logistics are tight-checked.</strong> Verify pickup time → drive time → airport arrival → check-in time window → flight departure. Clients should arrive at the airport at least 2 hours before international flights (3 hours for US departures recommended).</li>
-      <li><strong>Connection times are sufficient.</strong> If a client has a connection in Athens (like the Greece itinerary: Santorini 8:25 AM → Athens 9:15 AM → Athens 12:35 PM to Chicago), flag if the connection seems under 2 hours for an international flight.</li>
-      <li><strong>Multi-city hotel check-in matches the transfer arrival time.</strong> If Villa Makassar in Marrakech has a 2:00 PM check-in but the drive from Fes takes 6+ hours departing at 9:00 AM, the 2:00 PM check-in is close — note this for Barbara.</li>
+  <!-- KEY RULES -->
+  <div class="rules">
+    <h3>Key Rules for the VA</h3>
+    <ul>
+      <li>Never send an itinerary directly to a client — always route to Barbara</li>
+      <li>Never activate inactive automations in Tern without Barbara's direction</li>
+      <li>Never copy Travel Biz Boss cruise templates into the library</li>
+      <li>Never change trip statuses without Barbara's approval</li>
+      <li>Never edit master workflows in Tern</li>
+      <li>Always flag QA issues — never fix content unilaterally</li>
     </ul>
   </div>
 
-  <div class="step-group">
-    <div class="step-group-title">B. Missing Information</div>
-
-    <ul class="checklist">
-      <li><strong>All flight record locators are present.</strong> Never leave this blank on a final itinerary.</li>
-      <li><strong>All hotel confirmation numbers are entered</strong> (final itinerary only — proposal may show "pending").</li>
-      <li><strong>Emergency contact information is complete</strong> — local contact names, phone numbers, email, and instructions for how to reach them (WhatsApp group, call, etc.).</li>
-      <li><strong>All restaurant addresses and phone numbers are present.</strong> Website URLs where available.</li>
-      <li><strong>Meeting points are specified for every activity</strong> (hotel lobby, outside hotel, specific address).</li>
-      <li><strong>Driver/transfer company contact info is present</strong> for every transfer.</li>
-      <li><strong>Activity notes are complete</strong> — what to wear, what to bring, dietary requirements, difficulty level, etc. If the supplier provided these notes, they must be in the itinerary.</li>
-      <li><strong>Inclusions and exclusions are listed</strong> for each major activity (what is/isn't covered in the package).</li>
-      <li><strong>Any costs not included are noted clearly</strong> — e.g., "(Cost of dinner is not included)."</li>
-      <li><strong>Dietary requirements noted in the itinerary</strong> are actually in the supplier notes (e.g., "The grandparents' vegetarian requests will be accommodated").</li>
-      <li><strong>Client names are spelled correctly</strong> throughout, including in the itinerary title and on flights.</li>
-      <li><strong>Passenger seat assignments are included</strong> if available.</li>
-    </ul>
+  <!-- QUICK LINKS -->
+  <span class="section-label">Quick Links</span>
+  <div class="links-strip">
+    <a class="link-chip" href="https://calendly.com/baweindling/30-minute-meeting" target="_blank">
+      <span class="chip-icon">📅</span> Calendly
+    </a>
+    <a class="link-chip" href="https://travelpro365.com/consumer/WeindlingWorldTravel" target="_blank">
+      <span class="chip-icon">🏨</span> Hotel Portal
+    </a>
+    <a class="link-chip" href="https://loom.com/share/a880d3aa632940e5b2e315b941853f72" target="_blank">
+      <span class="chip-icon">🎬</span> Loom SOP
+    </a>
+    <a class="link-chip" href="https://axustravelapp.com" target="_blank">
+      <span class="chip-icon">🗺️</span> Axus
+    </a>
+    <a class="link-chip" href="https://instagram.com/BarbaraWeindlingTravels" target="_blank">
+      <span class="chip-icon">📸</span> @BarbaraWeindlingTravels
+    </a>
   </div>
 
-  <div class="step-group">
-    <div class="step-group-title">C. Supplier Terms &amp; Conditions Accuracy</div>
+</main>
 
-    <ul class="checklist">
-      <li><strong>T&amp;Cs are present</strong> for every supplier that provided them in their confirmation documents.</li>
-      <li><strong>Payment terms are copied verbatim</strong> from the supplier's T&amp;Cs — do not paraphrase. If the supplier says "35% deposit non-refundable. 100% 70 days before arrival" that exact language must appear.</li>
-      <li><strong>Cancellation policies are included exactly</strong> as stated by the supplier.</li>
-      <li><strong>Inclusions list matches</strong> what the supplier confirmed — cross-reference against the confirmation document.</li>
-      <li><strong>Fast Track / VIP service limitations are disclosed</strong> — as in Morocco where the T&amp;Cs clarify what Fast Track does and does not include. If the supplier provided this disclaimer, it must be in the itinerary.</li>
-      <li><strong>The "NOTE" about availability changes is present</strong> in the supplier T&amp;Cs if the supplier included it.</li>
-    </ul>
-  </div>
+<footer>
+  Weindling World Travel · <a href="mailto:barbara@weindlingworldtravel.com">barbara@weindlingworldtravel.com</a> · 917-992-4215
+</footer>
 
-  <div class="step-group">
-    <div class="step-group-title">D. Helpful Information &amp; Client Experience</div>
-
-    <ul class="checklist">
-      <li><strong>Destination prep content is complete and specific.</strong> Does it cover weather, dress code, currency, tipping, shopping, and packing? If any are missing from the supplier's content, flag for Barbara to decide whether to add.</li>
-      <li><strong>Tipping guidance is destination-specific</strong> and reflects the actual supplier's recommendations (daily amounts per guide, per chauffeur, currency preference, timing).</li>
-      <li><strong>Guide information section is present</strong> for DMC tours — who the guide is, what they handle, any staffing details (e.g., different mountain guides for different activity levels).</li>
-      <li><strong>Special considerations for mixed-ability groups are noted</strong> (e.g., different hiking routes for grandparents vs. younger travelers).</li>
-      <li><strong>Attire/what to bring is specified</strong> for physical activities (hiking, cruises, desert excursions).</li>
-      <li><strong>Food tour vs. dinner distinction is clear</strong> — if a food tasting experience does not replace dinner, that note must appear so clients don't skip their reservation.</li>
-      <li><strong>Axus app download reminder is in the Pre Travel section.</strong></li>
-      <li><strong>Instagram tag reminder is in the Travel Policies section</strong> (@BarbaraWeindlingTravels).</li>
-      <li><strong>Restaurant recommendations / free time sections exist</strong> for any unstructured half-days or full days.</li>
-    </ul>
-  </div>
-
-  <div class="step-group">
-    <div class="step-group-title">E. Proofreading</div>
-
-    <ul class="checklist">
-      <li>Read every description aloud (or carefully) — check for spelling errors, repeated sentences, and awkward phrasing. Note: the Morocco itinerary contained a typo ("grandchildren" → "grabndchildren") and a misspelling ("necessary" → "nececery") — catch these before Barbara sees them.</li>
-      <li>Section titles are consistent and properly formatted (Title Case, with " · " separators for dining reservations).</li>
-      <li>Times are formatted consistently (9:00 AM not 9am or 9:00am).</li>
-      <li>Dates are formatted consistently (Saturday · April 18th).</li>
-      <li>Phone numbers include country codes (e.g., +212 for Morocco, +30 for Greece).</li>
-      <li>No section has duplicate text (e.g., the Morocco itinerary had a repeated paragraph about the chauffeur waiting in the arrival hall — catch and flag these).</li>
-      <li>Colored/highlighted notes (orange text in Morocco) are intentional supplier callouts, not errors — verify they are present and accurate.</li>
-    </ul>
-  </div>
-
-  <div class="step-group">
-    <div class="step-group-title">F. Proposal-Specific Checks</div>
-
-    <ul class="checklist">
-      <li>All room rates (nightly and total) are present and match the supplier's quote.</li>
-      <li>All activity/transfer/VIP rates are shown in the Notes field.</li>
-      <li>Currency is correct for each rate (€ for European suppliers, USD for US-origin services).</li>
-      <li>Confirmation references marked as pending are flagged to Barbara to update once confirmed.</li>
-      <li>Payment terms appear in the relevant supplier T&amp;C section.</li>
-    </ul>
-  </div>
-
-  <div class="callout info" style="margin-top:8px;">
-    <span class="ci">📬</span>
-    <div><strong>How to deliver your QA report to Barbara:</strong> After completing the review, send a message via Tern with subject "QA Review Complete — [Client Name] [Destination]." List each flag as a numbered item with the section name, the issue, and a suggested fix or question. Do not make changes without Barbara's direction.</div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════ ELEMENT STANDARDS -->
-<section id="elements">
-  <div class="sec-header">
-    <span class="sec-num">04</span>
-    <h2>Element-by-Element Standards</h2>
-  </div>
-
-  <div class="callout note">
-    <span class="ci">📌</span>
-    <div>This section is a quick reference for how specific elements should look and what they must contain, derived directly from the Morocco (final) and Greece (proposal) reference itineraries.</div>
-  </div>
-
-  <div class="card">
-    <h4>Flight Elements</h4>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Field</th><th>Final Itinerary</th><th>Proposal</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td>Record Locator</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-a">If confirmed</span></td><td>Shown prominently below flight image</td></tr>
-          <tr><td>Carrier/Flight #</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td><td>e.g., AT203 for Royal Air Maroc flight 203</td></tr>
-          <tr><td>Departure time + airport code</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td><td>Show in the data grid: 10:50 AM / JFK</td></tr>
-          <tr><td>Arrival time + airport code</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td><td>Note "+1" when arriving next day</td></tr>
-          <tr><td>Duration</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td><td>e.g., 7 hr, 5 min</td></tr>
-          <tr><td>Passenger names &amp; seats</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-a">If assigned</span></td><td>Shown as a table below the flight grid</td></tr>
-          <tr><td>Baggage allowance</td><td><span class="pill pill-a">If applicable</span></td><td><span class="pill pill-a">If applicable</span></td><td>Include in Notes if a specific fare class applies</td></tr>
-          <tr><td>Rate</td><td><span class="pill pill-r">Remove</span></td><td><span class="pill pill-g">Include</span></td><td>Proposals only</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <h4>Hotel Elements</h4>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Field</th><th>Final Itinerary</th><th>Proposal</th></tr></thead>
-        <tbody>
-          <tr><td>Check-in / Check-out dates &amp; times</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Number of nights</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Hotel description</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Amenities list</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Room Category + Bedding</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Room description</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Confirmation reference</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-a">If confirmed</span></td></tr>
-          <tr><td>Number of guests</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Nightly rate + total price</td><td><span class="pill pill-r">Remove</span></td><td><span class="pill pill-g">Include</span></td></tr>
-          <tr><td>Payment notes</td><td><span class="pill pill-r">Remove</span></td><td><span class="pill pill-g">Include</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <h4>Activity / Experience Elements</h4>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Field</th><th>Final Itinerary</th><th>Proposal</th></tr></thead>
-        <tbody>
-          <tr><td>Start time, end time, duration</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Meeting point</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Description</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Inclusions list</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Practical notes (attire, tips)</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Dietary/special needs notes</td><td><span class="pill pill-g">Required</span></td><td><span class="pill pill-g">Required</span></td></tr>
-          <tr><td>Distance / drive time</td><td><span class="pill pill-a">If relevant</span></td><td><span class="pill pill-a">If relevant</span></td></tr>
-          <tr><td>Rate</td><td><span class="pill pill-r">Remove</span></td><td><span class="pill pill-g">Include</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card">
-    <h4>Dining Reservation Elements</h4>
-    <ul style="font-size:13.5px; color:#4a4a52; padding-left:18px; line-height:1.8;">
-      <li>Title format: <strong>[Restaurant Name] · Dining Reservation</strong></li>
-      <li>Phone number in the subtitle line</li>
-      <li>Full street address in italics below phone</li>
-      <li>Website URL where available</li>
-      <li>Reservation time shown as "Start Time" in the Axus time field</li>
-      <li>"Confirmed By" field: "Booked On Own" if self-booked; leave blank or add confirmation # if Barbara booked</li>
-      <li>Add a note if the meal cost is NOT included in the package</li>
-      <li>No pricing shown in either proposal or final itinerary (restaurants are usually not part of the packaged cost)</li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════ FINAL vs PROPOSAL -->
-<section id="final">
-  <div class="sec-header">
-    <span class="sec-num">05</span>
-    <h2>Final Itinerary vs. Proposal</h2>
-  </div>
-
-  <div class="intro-box">
-    Both document types use identical structure and image standards. The differences are <strong>only in what financial and booking-status information is shown.</strong> When converting a proposal to a final itinerary, work through this checklist systematically.
-  </div>
-
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr><th>Element</th><th>Proposal</th><th>Final Itinerary</th><th>Action When Converting</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Hotel nightly rate</td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td><span class="pill pill-r">Removed</span></td>
-          <td>Delete the rate field</td>
-        </tr>
-        <tr>
-          <td>Hotel total price</td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td><span class="pill pill-r">Removed</span></td>
-          <td>Delete the price field</td>
-        </tr>
-        <tr>
-          <td>Activity rates</td>
-          <td><span class="pill pill-g">Shown in Notes</span></td>
-          <td><span class="pill pill-r">Removed</span></td>
-          <td>Remove rate lines from Notes</td>
-        </tr>
-        <tr>
-          <td>Transfer rates</td>
-          <td><span class="pill pill-g">Shown in Notes</span></td>
-          <td><span class="pill pill-r">Removed</span></td>
-          <td>Remove rate lines from Notes</td>
-        </tr>
-        <tr>
-          <td>VIP service rates</td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td><span class="pill pill-r">Removed</span></td>
-          <td>Remove rate field</td>
-        </tr>
-        <tr>
-          <td>Hotel confirmation reference</td>
-          <td><span class="pill pill-a">If confirmed</span></td>
-          <td><span class="pill pill-g">Required</span></td>
-          <td>Add confirmation number from hotel voucher</td>
-        </tr>
-        <tr>
-          <td>Flight record locator</td>
-          <td><span class="pill pill-a">If ticketed</span></td>
-          <td><span class="pill pill-g">Required</span></td>
-          <td>Confirm PNR is entered</td>
-        </tr>
-        <tr>
-          <td>Passenger seat assignments</td>
-          <td><span class="pill pill-a">If assigned</span></td>
-          <td><span class="pill pill-g">Required</span></td>
-          <td>Add seat numbers from airline confirmation</td>
-        </tr>
-        <tr>
-          <td>Hotel payment notes</td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td><span class="pill pill-r">Removed</span></td>
-          <td>Remove payment/deposit notes</td>
-        </tr>
-        <tr>
-          <td>Supplier T&amp;Cs</td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td>Keep — T&amp;Cs appear in both versions</td>
-        </tr>
-        <tr>
-          <td>Pre Travel section</td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td>No change</td>
-        </tr>
-        <tr>
-          <td>Descriptions and notes</td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td><span class="pill pill-g">Shown</span></td>
-          <td>No change — content is identical</td>
-        </tr>
-        <tr>
-          <td>Images</td>
-          <td><span class="pill pill-g">Full standards</span></td>
-          <td><span class="pill pill-g">Full standards</span></td>
-          <td>Same image quality required in both</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout warn" style="margin-top:20px;">
-    <span class="ci">⚠️</span>
-    <div><strong>When in doubt about what to remove:</strong> ask Barbara before deleting. It is better to flag a rate that might stay than to remove content that was intentional. Never delete supplier T&amp;Cs or inclusions/exclusions lists — these protect both the client and Barbara legally.</div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════ COMMON ERRORS -->
-<section id="errors">
-  <div class="sec-header">
-    <span class="sec-num">06</span>
-    <h2>Common Errors to Catch</h2>
-  </div>
-
-  <div class="intro-box">
-    These errors were observed in or are commonly associated with Axus itinerary builds. Review this list before completing your QA pass — these are the things most likely to get flagged.
-  </div>
-
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr><th>Error Type</th><th>What to Look For</th><th>Example Spotted</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="pill pill-r">Typo</span></td>
-          <td>Misspelled words in descriptions, especially supplier-provided content pasted in without proofing</td>
-          <td>Morocco: "grabndchildren" (grandchildren), "nececery" (necessary), "reccomend" (recommend)</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-r">Duplicate text</span></td>
-          <td>Paragraphs that appear twice, often when content is pasted</td>
-          <td>Morocco arrival: the paragraph about the chauffeur waiting with a sign appeared twice</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-r">Missing image</span></td>
-          <td>Sections with no hero image — appears as a blank or gray box</td>
-          <td>Food tasting section in Morocco had no distinct header image (used a gray/tan gradient box instead of a photo)</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-a">Missing time</span></td>
-          <td>Activity or dining entry with no start time</td>
-          <td>Mizzan restaurant on Wednesday Morocco: no reservation time listed in the summary view</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-a">Tight connection</span></td>
-          <td>International connection under 2 hours, especially in airports where passport control is required</td>
-          <td>Greece: Santorini 8:25 AM → Athens 9:15 AM, connecting to 12:35 PM Chicago — flag for Barbara to confirm this is adequate</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-a">No lunch on long drive days</span></td>
-          <td>Multi-hour transfer days with no mention of where/how lunch will be handled</td>
-          <td>Any 4-6 hour drive day — confirm either the guide recommends a stop or lunch is included</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-a">Pricing left in final</span></td>
-          <td>Rate fields or "Rate: €XXX" notes remaining in a final itinerary</td>
-          <td>Common when converting a proposal — scan all Notes fields specifically</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-a">Check-in time vs. arrival time mismatch</span></td>
-          <td>Client arrives before hotel check-in time with no note about early check-in or luggage storage</td>
-          <td>Greece: hotel check-in 3:00 PM but arrival noted as 10 AM — confirm early check-in was arranged or add a note</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-b">Incomplete T&amp;Cs</span></td>
-          <td>Supplier T&amp;Cs that are partial — payment terms or cancellation policy missing</td>
-          <td>Any supplier section — cross-reference against the supplier's full confirmation document</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-b">Missing emergency contact details</span></td>
-          <td>Emergency contacts section without a phone number or with only an email</td>
-          <td>Morocco: had name, WhatsApp group info, and email — all three required. Phone number should also be included if provided by supplier.</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-b">Inconsistent currency formatting</span></td>
-          <td>Mix of USD and EUR, or amounts missing currency symbols</td>
-          <td>Tipping guide showing "5-10%" but also "5 USD" — ensure all amounts specify the currency</td>
-        </tr>
-        <tr>
-          <td><span class="pill pill-b">Missing "not included" disclaimer</span></td>
-          <td>Dinner reservations at restaurants that are not part of the package, with no note that the cost is excluded</td>
-          <td>Morocco: Safran by Koya dinner had "(Cost of dinner is not included)" — this is the correct standard</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout tip" style="margin-top: 20px;">
-    <span class="ci">💡</span>
-    <div><strong>Final reminder:</strong> Your role is to build thoroughly and flag honestly. Barbara's clients are high-end travelers — they notice everything. A clean, accurate, beautifully imaged itinerary reflects the quality of this agency. When something feels off, flag it. Never guess or silently fix something that might have been intentional.</div>
-  </div>
-</section>
-
-</div><!-- /.page -->
-
-<button id="btt" title="Back to top">↑</button>
-
-<script>
-  // Tab navigation
-  const tabs = document.querySelectorAll('.nav-tab');
-  const sections = document.querySelectorAll('section');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      sections.forEach(s => s.classList.remove('active'));
-      tab.classList.add('active');
-      const target = document.getElementById(tab.dataset.target);
-      if (target) target.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
-
-  // Progress bar
-  const progressBar = document.getElementById('progressBar');
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    progressBar.style.width = progress + '%';
-  });
-
-  // Back to top
-  const btt = document.getElementById('btt');
-  window.addEventListener('scroll', () => {
-    btt.classList.toggle('show', window.scrollY > 300);
-  });
-  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-</script>
 </body>
 </html>
