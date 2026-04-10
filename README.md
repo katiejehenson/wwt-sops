@@ -14,25 +14,7 @@ This repository contains internal SOPs and reference guides for the virtual admi
 
 ## Documents
 
-### 1. `weindling-tern-guide.html`
-**Tern Workflow & Template Reference Guide**
-
-The master reference for everything in the Tern CRM — workflows, email templates, forms, task lists, vendor commissions, and training videos.
-
-**Tabs included:**
-- **Summary** — Library counts at a glance, quick links (Calendly, Hotel Portal, Loom SOP)
-- **SOP & Workflows** — Full step-by-step guide for Barbara and the VA; workflow trigger map; timed email reference
-- **Travel Joy Templates** — All 55 email templates with category, type, and active status
-- **Tern Workflows** — Hotel Only, Lead, and Pre/Post task lists and automations with Active/Inactive status
-- **Forms** — All 14 client-facing forms
-- **Task Lists** — Full Trip (19 tasks) and Hotel Only (6 tasks) with trigger types and offsets
-- **Payment Reminders** — Setup steps and payment calculator guide
-- **Vendor Commissions** — Invoice and payment instructions for each vendor
-- **Training** — Video library with direct links (Axus, Airtable, NTCE Pay, Canva, Loom)
-
----
-
-### 2. `WWT_Itinerary_SOP.html`
+### `WWT_Itinerary_SOP.html`
 **Axus Itinerary Build & Review SOP** *(for VA use)*
 
 Standard operating procedures for building final client itineraries in Axus and conducting a thorough pre-send quality review — based on Barbara's confirmed itinerary standards.
